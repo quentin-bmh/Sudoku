@@ -1,0 +1,26 @@
+body {
+    background-color: rgb(41, 37, 95);
+}
+
+.sudoku-container {
+    background-color: black;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1px;
+    margin:20vh 0 20vh 0 ;
+    width: 153px;
+    height: 153px;
+    border: 1px solid black;
+}
+
+.carre {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.carre button {
+    width: 50px;
+    height: 50px;
+}
