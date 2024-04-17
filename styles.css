@@ -32,16 +32,20 @@ body {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 1px;
-    width: 353px;
-    height: 353px;
+    width: 475px;
+    height: 475px;
     border: 1px solid black;
     margin-right: 4%;
+}
+.hidden{
+    display: none;
 }
 
 .carre {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    margin: 2px;
 }
 .proposition{
     background-color: bisque;
