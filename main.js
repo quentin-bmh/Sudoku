@@ -142,5 +142,18 @@ function IsSudokuValid(){
 
 }
 
+function eraseSudoku() {
+    const carres = document.querySelectorAll('.sudoku-container .carre');
+    carres.forEach(carre => {
+        const boutons = carre.querySelectorAll('button');
+        if (boutons.length > 0) {
+            boutons.forEach(bouton => {
+                bouton.textContent = "";
+            });
+        }
+    });
+}
+
+
 
 
