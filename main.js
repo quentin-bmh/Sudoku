@@ -131,7 +131,7 @@ function IsSudokuValid(){
     const resC = document.querySelector('.correctA');
     const resI = document.querySelector('.incorrectA');
     console.log(count);
-    if(count !=45){
+    if(count !=405){
         resI.classList.remove('hidden');
         resC.classList.add('hidden');
     }
@@ -139,7 +139,7 @@ function IsSudokuValid(){
         resC.classList.remove('hidden');
         resI.classList.add('hidden');
     }
-
+        
 }
 
 function eraseSudoku() {

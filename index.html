@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=
-    , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -18,21 +17,98 @@
         </div>
         <div class="btn-options">
             <button onclick="eraseSudoku()">Erase all</button>
-            <button>Generate new Sudoku</button>
-            <button>Hint</button>
+            <button onclick="generateSudoku()">Generate new Sudoku</button>
+            <button onclick="giveHint()">Hint</button>
         </div>
         <div class="sudoku-container">        
             <div class="carre">
-                <button class="list-group-item  list-group-item-action" droppable="true">1</button>
-                <button class="list-group-item  list-group-item-action" droppable="true">2</button>
-                <button class="list-group-item  list-group-item-action" droppable="true">3</button>
-                <button class="list-group-item  list-group-item-action" droppable="true">4</button>
-                <button class="list-group-item  list-group-item-action" droppable="true">5</button>
                 <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true">7</button>
-                <button class="list-group-item  list-group-item-action" droppable="true">8</button>
-                <button class="list-group-item  list-group-item-action" droppable="true">9</button>
-            </div>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+            </div>        
+            <div class="carre">
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+            </div>        
+            <div class="carre">
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+            </div>        
+            <div class="carre">
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+            </div>        
+            <div class="carre">
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+            </div>        
+            <div class="carre">
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+            </div>        
+            <div class="carre">
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+            </div>        
+            <div class="carre">
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+                <button class="list-group-item  list-group-item-action" droppable="true"></button>
+            </div>        
             <div class="carre">
                 <button class="list-group-item  list-group-item-action" droppable="true"></button>
                 <button class="list-group-item  list-group-item-action" droppable="true"></button>
@@ -44,84 +120,7 @@
                 <button class="list-group-item  list-group-item-action" droppable="true"></button>
                 <button class="list-group-item  list-group-item-action" droppable="true"></button>
             </div>
-            <div class="carre">
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-            </div>
-            <div class="carre">
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-            </div>
-            <div class="carre">
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-            </div>
-            <div class="carre">
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-            </div>
-            <div class="carre">
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-            </div>
-            <div class="carre">
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-            </div>
-    
-            <div class="carre">
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-                <button class="list-group-item  list-group-item-action" droppable="true"></button>
-            </div>
+            
         </div>
     </div>
     
@@ -149,6 +148,6 @@
         </div>
     </div>
     
-        <script src="main.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

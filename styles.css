@@ -35,7 +35,7 @@ body {
     width: 475px;
     height: 475px;
     border: 1px solid black;
-    margin-right: 4%;
+    margin-left: 3%;
 }
 .hidden{
     display: none;
