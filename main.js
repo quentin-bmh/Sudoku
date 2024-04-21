@@ -40,11 +40,7 @@ const handleDragStart = (e) =>{
     const newElement = document.createElement('a');
     newElement.href = "#";
     newElement.classList.add('list-group-item', 'list-group-item-action');
-    newElement.draggable = true;
     newElement.textContent = text.trim();
-    addBackgroundD(newElement);
-    const actionLog = document.getElementById('MvtElmtD');
-    actionLog.appendChild(newElement);
 
 }
 //ajout de la js Doc
@@ -88,11 +84,7 @@ const handleDrop = (e)=>{
     const newElement = document.createElement('a');
     newElement.href = "#";
     newElement.classList.add('list-group-item', 'list-group-item-action');
-    newElement.draggable = true;
     newElement.textContent = text;
-    addBackgroundA(newElement);
-    const actionLog = document.getElementById('MvtElmtA');
-    actionLog.appendChild(newElement);
 }
 
 listItems.forEach(listItem =>{
@@ -143,7 +135,7 @@ function IsSudokuValid(){
 }
 
 function eraseSudoku() {
-    const carres = document.querySelectorAll('.sudoku-container .carre');
+    const carres = document.querySelectorAll('.sudoku-container');
     carres.forEach(carre => {
         const boutons = carre.querySelectorAll('button');
         if (boutons.length > 0) {
@@ -153,6 +145,86 @@ function eraseSudoku() {
         }
     });
 }
+async function loadSudokuSolutions() {
+    try {
+        const response = await fetch('sudoku.json');
+        if (!response.ok) {
+            throw new Error('Failed to load sudoku solutions');
+        }
+        const sudokuSolutions = await response.json();
+        return sudokuSolutions;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
+async function generateSudoku() {
+    eraseSudoku();
+    const sudokuContainer = document.getElementById('sudokuContainer');
+    const buttons = sudokuContainer.querySelectorAll('.list-group-item ');
+
+    try {
+        const sudokuSolutions = await loadSudokuSolutions();
+        if (sudokuSolutions.length === 0) {
+            throw new Error('No sudoku solutions loaded');
+        }
+
+        const randomIndex = Math.floor(Math.random() * sudokuSolutions.length);
+        const sudokuSolution = sudokuSolutions[randomIndex];
+        
+
+        // Générer un tableau d'indices uniques pour les 35 chiffres aléatoires
+        const randomIndices = getRandomIndices(35);
+
+        randomIndices.forEach((index) => {
+            buttons[index].textContent = sudokuSolution[index];
+        });
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// Fonction pour générer des indices uniques aléatoires
+function getRandomIndices(count) {
+    /**@type {HTMLAnchorElement} */
+    const indices = [];
+    while (indices.length < count) {
+        const index = Math.floor(Math.random() * 81);
+        if (!indices.includes(index)) {
+            indices.push(index);
+        }
+    }
+    indices.droppable = false;
+    return indices;
+}
+
+generateSudoku();
+
+
+
+// Sélectionnez chaque bouton par son ID
+const easyBtn = document.getElementById('easyBtn');
+const mediumBtn = document.getElementById('mediumBtn');
+const hardBtn = document.getElementById('hardBtn');
+const demonBtn = document.getElementById('demonBtn');
+
+// Ajoutez un gestionnaire d'événements à chaque bouton
+easyBtn.addEventListener('click', () => {
+    generateSudoku(5); // Générer avec 35 chiffres pour easy level
+});
+
+mediumBtn.addEventListener('click', () => {
+    generateSudoku(3); // Générer avec 32 chiffres pour medium level
+});
+
+hardBtn.addEventListener('click', () => {
+    generateSudoku(2); // Générer avec 28 chiffres pour hard level
+});
+
+demonBtn.addEventListener('click', () => {
+    generateSudoku(1); // Générer avec 25 chiffres pour demon level
+});
 
 
 

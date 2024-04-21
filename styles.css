@@ -29,8 +29,8 @@ body {
 .sudoku-container {
     background-color: black;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
     gap: 1px;
     width: 475px;
     height: 475px;
