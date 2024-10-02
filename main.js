@@ -86,8 +86,15 @@ async function generateSudoku(difficulty) {
 
     const randomIndices = getRandomIndices(difficulty);
 
-    randomIndices.forEach((index) => {
-      buttons[index].textContent = sudokuSolution[index];
+    buttons.forEach((button, index) => {
+      if (randomIndices.includes(index)) {
+        button.textContent = sudokuSolution[index];
+        button.style.fontWeight = '800';
+      } else {
+        button.textContent = '';
+        button.style.fontWeight = 'normal';
+        button.style.backgroundColor='rgba(255,255,255, 0.8)';
+      }
     });
   } catch (error) {
     console.error(error);
