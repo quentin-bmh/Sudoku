@@ -122,40 +122,84 @@ demonBtn.addEventListener("click", () => {
   generateSudokuWithCurrentDifficulty();
 });
 generateSudokuWithCurrentDifficulty();
-/*Funtion not finished*/
+
+/*Funtion finished*/
 function IsSudokuValid() {
   const sudoku = [];
-  const carres = document.querySelectorAll(".sudoku-container .list-group-item");
-
-  carres.forEach((carre) => {
-    const boutons = carre.querySelectorAll("button");
-    if (boutons.length > 0) {
-      boutons.forEach((bouton) => {
-        const contenu = bouton.textContent.trim();
-        const nombre = parseInt(contenu);
-        if (!isNaN(nombre)) {
-          sudoku.push(nombre);
-        } else {
-          sudoku.push(0);
-        }
-      });
-    }
+  const carres = document.querySelectorAll(".sudoku-container button");
+  carres.forEach((bouton, index) => {
+    const contenu = bouton.textContent.trim();
+    const nombre = parseInt(contenu);
+    sudoku.push(!isNaN(nombre) ? nombre : 0);
   });
 
-  let count = 0;
-  for (let i = 0; i < sudoku.length; i++) {
-    count += sudoku[i];
+  // Transformer le tableau linéaire en un tableau 9x9
+  const grid = [];
+  for (let i = 0; i < 9; i++) {
+    grid.push(sudoku.slice(i * 9, i * 9 + 9));
   }
+
+  // Fonction pour vérifier si une liste contient les nombres de 1 à 9 sans répétition
+  function isValidGroup(group) {
+    const seen = new Set();
+    for (const num of group) {
+      if (num < 1 || num > 9 || seen.has(num)) {
+        return false;
+      }
+      seen.add(num);
+    }
+    return true;
+  }
+
+  // Vérifier les lignes
+  for (let row = 0; row < 9; row++) {
+    if (!isValidGroup(grid[row])) {
+      showResult(false);
+      return;
+    }
+  }
+
+  // Vérifier les colonnes
+  for (let col = 0; col < 9; col++) {
+    const column = [];
+    for (let row = 0; row < 9; row++) {
+      column.push(grid[row][col]);
+    }
+    if (!isValidGroup(column)) {
+      showResult(false);
+      return;
+    }
+  }
+
+  // Vérifier les blocs 3x3
+  for (let blockRow = 0; blockRow < 3; blockRow++) {
+    for (let blockCol = 0; blockCol < 3; blockCol++) {
+      const block = [];
+      for (let row = 0; row < 3; row++) {
+        for (let col = 0; col < 3; col++) {
+          block.push(grid[blockRow * 3 + row][blockCol * 3 + col]);
+        }
+      }
+      if (!isValidGroup(block)) {
+        showResult(false);
+        return;
+      }
+    }
+  }
+  showResult(true);
+}
+function showResult(isValid) {
   const resC = document.querySelector(".correctA");
   const resI = document.querySelector(".incorrectA");
-  if (count != 405) {
-    resI.classList.remove("hidden");
-    resC.classList.add("hidden");
-  } else {
+  if (isValid) {
     resC.classList.remove("hidden");
     resI.classList.add("hidden");
+  } else {
+    resC.classList.add("hidden");
+    resI.classList.remove("hidden");
   }
 }
+
 /*Funtion finished*/
 function eraseSudoku() {
   const carres = document.querySelectorAll(".sudoku-container");
@@ -184,7 +228,7 @@ function getRandomIndices(count) {
   return indices;
 }
 
-
+/* ajout des bordures du sudoku */
 function addBorders() {
   const buttons = document.querySelectorAll('.sudoku-container button');
   
