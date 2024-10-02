@@ -93,6 +93,35 @@ async function generateSudoku(difficulty) {
     console.error(error);
   }
 }
+
+/*Manipulate sudoku dificulty*/
+let currentDifficulty = 35;
+function generateSudokuWithCurrentDifficulty() {
+  generateSudoku(currentDifficulty);
+}
+
+const easyBtn = document.getElementById("easyBtn");
+const mediumBtn = document.getElementById("mediumBtn");
+const hardBtn = document.getElementById("hardBtn");
+const demonBtn = document.getElementById("demonBtn");
+
+easyBtn.addEventListener("click", () => {
+  currentDifficulty = 35; 
+  generateSudokuWithCurrentDifficulty();
+});
+mediumBtn.addEventListener("click", () => {
+  currentDifficulty = 32;
+  generateSudokuWithCurrentDifficulty();
+});
+hardBtn.addEventListener("click", () => {
+  currentDifficulty = 28;
+  generateSudokuWithCurrentDifficulty();
+});
+demonBtn.addEventListener("click", () => {
+  currentDifficulty = 25;
+  generateSudokuWithCurrentDifficulty();
+});
+generateSudokuWithCurrentDifficulty();
 /*Funtion not finished*/
 function IsSudokuValid() {
   const sudoku = [];
@@ -155,33 +184,33 @@ function getRandomIndices(count) {
   return indices;
 }
 
-/*Manipulate sudoku dificulty*/
-let currentDifficulty = 35;
-function generateSudokuWithCurrentDifficulty() {
-  generateSudoku(currentDifficulty);
+
+function addBorders() {
+  const buttons = document.querySelectorAll('.sudoku-container button');
+  
+  buttons.forEach((button, index) => {
+      let row = Math.floor(index / 9);
+      let col = index % 9;
+      button.style.border = '0px solid black';
+      if (col % 3 === 2) {
+          button.style.borderRight = '3px solid black';
+      }
+      if (row % 3 === 2) {
+          button.style.borderBottom = '3px solid black';
+      }
+      if (col === 0) {
+          button.style.borderLeft = '3px solid black';
+      }
+      if (row === 0) {
+          button.style.borderTop = '3px solid black';
+      }
+  });
 }
 
-const easyBtn = document.getElementById("easyBtn");
-const mediumBtn = document.getElementById("mediumBtn");
-const hardBtn = document.getElementById("hardBtn");
-const demonBtn = document.getElementById("demonBtn");
+addBorders();
 
-easyBtn.addEventListener("click", () => {
-  currentDifficulty = 35; 
-  generateSudokuWithCurrentDifficulty();
-});
-mediumBtn.addEventListener("click", () => {
-  currentDifficulty = 32;
-  generateSudokuWithCurrentDifficulty();
-});
-hardBtn.addEventListener("click", () => {
-  currentDifficulty = 28;
-  generateSudokuWithCurrentDifficulty();
-});
-demonBtn.addEventListener("click", () => {
-  currentDifficulty = 25;
-  generateSudokuWithCurrentDifficulty();
-});
-generateSudokuWithCurrentDifficulty();
+
+
+
 
 
