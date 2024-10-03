@@ -2,6 +2,8 @@
 const listItems = document.querySelectorAll(".list-group-item");
 
 let draggedItem;
+const sudokuInitial = [];
+const sudokuFinal = [];
 
 
 /*DRAG AND DROP */
@@ -29,7 +31,7 @@ const handleDragStart = (e) => {
 
 const handleDrop = (e) => {
   e.preventDefault();
-  const target = e.target;
+  const target = e.target;  
   //vérifie que la target contient 'data-fixed' pour déterminer si on peut drop un bouton dessus, si oui on ne peut drop, sinon cette case est vide et on peut la remplir
   if (target.getAttribute('data-fixed') === 'true') {
     alert("Vous ne pouvez pas drop sur cette case fixe.");
@@ -39,12 +41,10 @@ const handleDrop = (e) => {
   if (target.closest('.carrePropal') && target.tagName.toLowerCase() === 'button') {
     return;
   }
-
   const text = e.dataTransfer.getData("text/plain");
-
   //vérifie si ce qui est drop est bien un chiffre compri entre 1 et 9 tout le reste est refusé
   if (/^[1-9]$/.test(text)) {
-    target.textContent = text;
+    target.textContent = text;    
   } else {
     alert("Le contenu que vous essayez de drag and drop doit être un chiffre entre 1 et 9.");
   }
@@ -52,6 +52,8 @@ const handleDrop = (e) => {
   newElement.href = "#";
   newElement.classList.add("list-group-item", "list-group-item-action");
   newElement.textContent = text;
+  scanSudoku();
+  compareSudoku()
 };
 
 
@@ -95,23 +97,26 @@ async function generateSudoku(difficulty) {
     const sudokuSolution = sudokuSolutions[randomIndex];
     //console.log(sudokuSolution);
     const randomIndices = getRandomIndices(difficulty);
-    //const sudokuFinal = [];
     buttons.forEach((button, index) => {
       if (randomIndices.includes(index)) {
         button.textContent = sudokuSolution[index];
-        //sudokuFinal.push(button.textContent);
+        sudokuInitial.push(button.textContent);
         button.style.fontWeight = '800';
+        button.style.fontSize ='20px';
         button.style.backgroundColor='rgba(255,255,255,1)';
         button.setAttribute('data-fixed', 'true');
       } else {
         button.textContent = '';
-        //sudokuFinal.push(0);
-        button.style.fontWeight = 'normal';
+        sudokuInitial.push(0);
+        button.style.fontWeight = '700';
+        button.style.fontSize ='20px';
         button.style.backgroundColor='rgba(255,255,255, 0.8)';
         button.setAttribute('data-fixed', 'false');
       }
     });
-    //console.log(sudokuFinal);
+    //console.log(sudokuInitial);
+    sudokuFinal.push(sudokuInitial);
+    // console.log(sudokuFinal);
   } catch (error) {
     console.error(error);
   }
@@ -273,11 +278,38 @@ function addBorders() {
       }
   });
 }
-
 addBorders();
 
+function back(){  
+  
+}
 
 
+function scanSudoku(){
+  //vide le tableau
+  sudokuFinal.length = 0;
+  //parcourt tout le tableau et en fait un scan
+  const carres = document.querySelectorAll(".sudoku-container button");
+  carres.forEach((bouton) => {
+    sudokuFinal.push(bouton.textContent);
+  });
+  // console.log(sudokuFinal);
+  return sudokuFinal;
+}
+
+const listMove = [];
+function compareSudoku(){
+  listMove.length=0;
+  for(let i=0; i<80; i++){
+    if(sudokuInitial[i] != sudokuFinal[i]){
+      const existingMove = listMove.find(move => move[0] === i);
+      if (!existingMove) {
+        listMove.push([i, sudokuFinal[i]]);
+      }
+    }
+  }
+  //console.log(listMove);
+}
 
 
 

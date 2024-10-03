@@ -1,5 +1,5 @@
 body {
-    background: radial-gradient(circle at top left, #00ffff, #00262a);
+    background: radial-gradient(circle, #00bcd4, #00a9bf, #0096aa, #008494, #00717f, #005e6a, #004b55, #003840, #00262a, #001315);
     width: 100vw;
     height: 98.3vh;
     display: flex;
@@ -15,13 +15,37 @@ body::-webkit-scrollbar {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 25%;
+    width: 37%;
     height: 100%;
 }
 .jeu h2{
     font-size: 35px;
     margin-top: 5%;
 }
+
+.btn-options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    justify-items: center;
+    align-items: center;
+    width: 80%;
+}
+.btn-options button{
+    background-color: transparent;
+    border: none;
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.btn-options button img{
+    width: 100%;
+    height: fit-content;
+}
+
+/* .btn-level{} */
+
 .btn-level button{
     margin: 10px;
     background-color: rgb(206, 106, 25);
@@ -30,12 +54,7 @@ body::-webkit-scrollbar {
     box-shadow:  0 0 10px rgba(0, 0, 0, 0.8);
 }
 
-.btn-options button{
-    background-color: black;
-    color: white;
-    border: none;
-    margin-bottom: 40px;
-}
+
 
 .sudoku-container {
     background-color: black;
@@ -43,8 +62,8 @@ body::-webkit-scrollbar {
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(9, 1fr);
     gap: 1px;
-    width: 475px;
-    height: 475px;
+    width: 100%;
+    height: 80%;
     border: 1px solid black;
 }
 .hidden{
@@ -71,7 +90,13 @@ body::-webkit-scrollbar {
     width: 150px;
     height: 150px;    
     margin-bottom: 2vh;
-    
+    cursor: grab;
+}
+.carrePropal button{
+    cursor: grab;
+}
+.carrePropal button:active{
+    cursor: grabbing;
 }
 
 .proposition.h2{

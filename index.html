@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
-</head>
+    </head>
 <body>
     <div class="jeu">
         <h2>Try to resolve this Sudoku!!</h2>
@@ -17,8 +17,15 @@
         </div>
         
         <div class="btn-options">
-            <button onclick="eraseSudoku()">Erase all</button>
-            <button onclick="giveHint()">Hint</button>
+            <button onclick="eraseSudoku()">
+                <img src="eraser.png" alt="">
+            </button>
+            <button onclick="giveHint()">
+                <img src="idea.png" alt="">
+            </button>
+            <button onclick="back()">
+                <img src="backArrow.png" alt="">
+            </button>
         </div>
         <div class="sudoku-container" id="sudokuContainer">
             <button class="list-group-item  list-group-item-action" droppable="true"></button>
