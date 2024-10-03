@@ -280,9 +280,33 @@ function addBorders() {
 }
 addBorders();
 
-function back(){  
-  
+function back() {
+  // Vérifier s'il y a des mouvements à annuler
+  if (listMove.length > 0) {
+    // Récupérer le dernier mouvement ajouté
+    const lastMove = listMove.pop();
+
+    // Extraire l'index du dernier mouvement
+    const [index] = lastMove;
+
+    // Trouver le bouton correspondant dans le tableau Sudoku
+    const sudokuContainer = document.getElementById("sudokuContainer");
+    const buttons = sudokuContainer.querySelectorAll(".list-group-item");
+
+    // Annuler le dernier mouvement
+    const button = buttons[index];
+    if (button.getAttribute('data-fixed') === 'false') {
+      button.textContent = ''; // Effacer la valeur entrée par l'utilisateur
+    }
+
+    // Mettre à jour le tableau `sudokuFinal` après l'annulation
+    sudokuFinal[index] = 0; // Remettre à zéro après avoir supprimé l'entrée de l'utilisateur
+    console.log(listMove);
+  } else {
+    console.log("Aucun mouvement à annuler");
+  }
 }
+
 
 
 function scanSudoku(){
@@ -308,8 +332,25 @@ function compareSudoku(){
       }
     }
   }
-  //console.log(listMove);
+  console.log(listMove);
 }
 
+// function compareSudoku(){
+//   let isNewNbr = false;
+//   listMove.length=0;
+//   for(let i=0; i<81; i++){
+//     if(sudokuInitial[i] != sudokuFinal[i]){
+//       for(let j=0 ; j<listMove.length; j++){
+//         if(listMove[j] != sudokuFinal[i]){
+//           isNewNbr=true;
+//         }
+//       }
+//     }
+//     if(isNewNbr=true){
+//       listMove.push([i,sudokuFinal[i]]);
+//     }
+//   }
+//   console.log(listMove);
+// }
 
 
