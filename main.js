@@ -9,7 +9,7 @@ const handleDragLeave = (e) => {};
 const handleDragEnter = (e) => {};
 const handleDragOver = (e) => {
     e.preventDefault();
-};  
+  };  
 const handleDragEnd = (e) => {
   const target = e.target;
   target.style.opacity = 1;
@@ -30,21 +30,30 @@ const handleDragStart = (e) => {
 const handleDrop = (e) => {
   e.preventDefault();
   const target = e.target;
-  if(target.closest('.carrePropal') && target.tagName.toLowerCase()=== 'button'){
-    alert("vous ne pouvez pas drop sur les boutons de proposition");
+  //vérifie que la target contient 'data-fixed' pour déterminer si on peut drop un bouton dessus, si oui on ne peut drop, sinon cette case est vide et on peut la remplir
+  if (target.getAttribute('data-fixed') === 'true') {
+    alert("Vous ne pouvez pas drop sur cette case fixe.");
     return;
   }
+  //vérifie si la target du drop fait partie du carré de proposition drag and drop si oui on ne veut pas que la valeur change car c'est à l'aide de ces boutons que l'on remplie le sudoku
+  if (target.closest('.carrePropal') && target.tagName.toLowerCase() === 'button') {
+    return;
+  }
+
   const text = e.dataTransfer.getData("text/plain");
+
+  //vérifie si ce qui est drop est bien un chiffre compri entre 1 et 9 tout le reste est refusé
   if (/^[1-9]$/.test(text)) {
     target.textContent = text;
   } else {
-    alert("vous ne pouvez pas drag and drop votre contenu, il doit être entre 1 et 9");
+    alert("Le contenu que vous essayez de drag and drop doit être un chiffre entre 1 et 9.");
   }
   const newElement = document.createElement("a");
   newElement.href = "#";
   newElement.classList.add("list-group-item", "list-group-item-action");
   newElement.textContent = text;
 };
+
 
 listItems.forEach((listItem) => {
   listItem.addEventListener("dragstart", handleDragStart);
@@ -63,6 +72,7 @@ async function loadSudokuSolutions() {
       throw new Error("Failed to load sudoku solutions");
     }
     const sudokuSolutions = await response.json();
+    //console.log(sudokuSolutions);
     return sudokuSolutions;
   } catch (error) {
     console.error(error);
@@ -83,19 +93,25 @@ async function generateSudoku(difficulty) {
 
     const randomIndex = Math.floor(Math.random() * sudokuSolutions.length);
     const sudokuSolution = sudokuSolutions[randomIndex];
-
+    //console.log(sudokuSolution);
     const randomIndices = getRandomIndices(difficulty);
-
+    //const sudokuFinal = [];
     buttons.forEach((button, index) => {
       if (randomIndices.includes(index)) {
         button.textContent = sudokuSolution[index];
+        //sudokuFinal.push(button.textContent);
         button.style.fontWeight = '800';
+        button.style.backgroundColor='rgba(255,255,255,1)';
+        button.setAttribute('data-fixed', 'true');
       } else {
         button.textContent = '';
+        //sudokuFinal.push(0);
         button.style.fontWeight = 'normal';
         button.style.backgroundColor='rgba(255,255,255, 0.8)';
+        button.setAttribute('data-fixed', 'false');
       }
     });
+    //console.log(sudokuFinal);
   } catch (error) {
     console.error(error);
   }

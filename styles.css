@@ -1,11 +1,22 @@
 body {
-    background-color: rgb(41, 37, 95);
+    background: radial-gradient(circle at top left, #00ffff, #00262a);
+    width: 100vw;
+    height: 98.3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+body::-webkit-scrollbar {
+        display: none;
+    }
 .jeu{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 25%;
+    height: 100%;
 }
 .jeu h2{
     font-size: 35px;
@@ -35,7 +46,6 @@ body {
     width: 475px;
     height: 475px;
     border: 1px solid black;
-    margin-left: 3%;
 }
 .hidden{
     display: none;
