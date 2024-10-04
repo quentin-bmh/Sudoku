@@ -348,7 +348,7 @@ let nbrCasesFausses = 0;
 let nbrCasesCorrectes = 0;
 let posIndice = 0;
 let giveSolution = false;
-let positionSolution = -1; // Pour mémoriser la position de la solution donnée.
+let positionSolution = -1;
 
 function giveHint() {
   nbrCasesVides = 0;
@@ -426,6 +426,34 @@ function getNbrCases() {
   if (posIndice !== -1) {
     // console.log("Valeur de la solution pour l'indice sélectionné: " + getSudokuSolution[0][posIndice]);
   }
+}
+
+document.querySelector('#eraser').addEventListener('click', function() {
+  erase();
+});
+
+function erase() {
+  const carres = document.querySelectorAll('.sudoku-container button');
+
+  // Fonction de rappel pour effacer le texte du bouton et mettre à jour listMove
+  function handleErase(event) {
+    const bouton = event.target;
+    const index = Array.from(carres).indexOf(bouton);
+
+    // Effacer le texte du bouton
+    if (bouton.getAttribute('data-fixed') === 'true') {
+      return;
+    }else{
+      bouton.textContent = "";
+      sudokuFinal[index] = "";
+      const moveIndex = listMove.findIndex(move => move[0] === index);
+      if (moveIndex !== -1) {
+        listMove.splice(moveIndex, 1);
+      }
+    }
+    carres.forEach(b => b.removeEventListener('click', handleErase));
+  }
+  carres.forEach(bouton => bouton.addEventListener('click', handleErase));
 }
 
 

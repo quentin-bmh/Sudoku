@@ -43,7 +43,9 @@ body::-webkit-scrollbar {
     width: 100%;
     height: fit-content;
 }
-
+#eraser:active{
+    cursor: url('eraser.png'), auto;
+}
 /* .btn-level{} */
 
 .btn-level button{
