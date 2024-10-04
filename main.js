@@ -323,14 +323,17 @@ function scanSudoku(){
 
 const listMove = [];
 function compareSudoku(){
-  listMove.length=0;
   for(let i=0; i<80; i++){
     if(sudokuInitial[i] != sudokuFinal[i]){
+      console.log(sudokuFinal[i]);
       const existingMove = listMove.find(move => move[0] === i);
       if (!existingMove) {
         listMove.push([i, sudokuFinal[i]]);
       }
     }
+  }
+  for (let i = 0; i < 81; i++) {
+    sudokuInitial[i] = sudokuFinal[i];
   }
   console.log(listMove);
 }
