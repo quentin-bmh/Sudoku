@@ -82,6 +82,8 @@ async function loadSudokuSolutions() {
   }
 }
 
+const getSudokuSolution = [];
+
 async function generateSudoku(difficulty) {
   eraseSudoku();
   const sudokuContainer = document.getElementById("sudokuContainer");
@@ -95,7 +97,8 @@ async function generateSudoku(difficulty) {
 
     const randomIndex = Math.floor(Math.random() * sudokuSolutions.length);
     const sudokuSolution = sudokuSolutions[randomIndex];
-    //console.log(sudokuSolution);
+    getSudokuSolution.push(sudokuSolution);
+    // console.log(sudokuSolution);
     const randomIndices = getRandomIndices(difficulty);
     buttons.forEach((button, index) => {
       if (randomIndices.includes(index)) {
@@ -317,7 +320,6 @@ function scanSudoku(){
   carres.forEach((bouton) => {
     sudokuFinal.push(bouton.textContent);
   });
-  // console.log(sudokuFinal);
   return sudokuFinal;
 }
 
@@ -325,7 +327,7 @@ const listMove = [];
 function compareSudoku(){
   for(let i=0; i<80; i++){
     if(sudokuInitial[i] != sudokuFinal[i]){
-      console.log(sudokuFinal[i]);
+      // console.log(sudokuFinal[i]);
       const existingMove = listMove.find(move => move[0] === i);
       if (!existingMove) {
         listMove.push([i, sudokuFinal[i]]);
@@ -335,25 +337,94 @@ function compareSudoku(){
   for (let i = 0; i < 81; i++) {
     sudokuInitial[i] = sudokuFinal[i];
   }
-  console.log(listMove);
+  // console.log(listMove);
 }
 
-// function compareSudoku(){
-//   let isNewNbr = false;
-//   listMove.length=0;
-//   for(let i=0; i<81; i++){
-//     if(sudokuInitial[i] != sudokuFinal[i]){
-//       for(let j=0 ; j<listMove.length; j++){
-//         if(listMove[j] != sudokuFinal[i]){
-//           isNewNbr=true;
-//         }
-//       }
-//     }
-//     if(isNewNbr=true){
-//       listMove.push([i,sudokuFinal[i]]);
-//     }
-//   }
-//   console.log(listMove);
-// }
+let nbrCasesVides = 0;
+let nbrCasesFausses = 0;
+let nbrCasesCorrectes = 0;
+let posIndice = 0;
+let giveSolution = false;
+let positionSolution = -1; // Pour mémoriser la position de la solution donnée.
+
+function giveHint() {
+  nbrCasesVides = 0;
+  nbrCasesFausses = 0;
+  nbrCasesCorrectes = 0;
+
+  // Si `giveSolution` est `false`, nous devons trouver une nouvelle case pour donner un indice.
+  if (!giveSolution) {
+    scanSudoku();
+    getNbrCases();
+    positionSolution = posIndice; // Conserver l'indice trouvé pour le prochain clic
+  }
+
+  const carres = document.querySelectorAll(".sudoku-container button");
+
+  // Vérifiez que `positionSolution` est valide
+  if (positionSolution >= 0 && positionSolution < 81) {
+    // Si `giveSolution` est `false`, coloriez la case
+    if (!giveSolution) {
+      if (sudokuFinal[positionSolution] == "") {
+        carres[positionSolution].style.backgroundColor = 'blue'; // Case vide
+      } else if (getSudokuSolution[0][positionSolution] != sudokuFinal[positionSolution]) {
+        carres[positionSolution].style.backgroundColor = 'red'; // Case incorrecte
+      }
+      giveSolution = true; // La prochaine fois, nous montrerons la solution.
+    } else {
+      if(sudokuFinal[positionSolution] ==getSudokuSolution[0][positionSolution]){
+        carres[positionSolution].style.backgroundColor='rgba(255,255,255, 0.8)';
+      }
+      // Si `giveSolution` est `true`, afficher la solution dans la case.
+      if (sudokuFinal[positionSolution] == "" || getSudokuSolution[0][positionSolution] != sudokuFinal[positionSolution]) {
+        carres[positionSolution].textContent = getSudokuSolution[0][positionSolution];
+        carres[positionSolution].style.backgroundColor='rgba(255,255,255, 0.8)';
+      }
+      giveSolution = false; // La prochaine fois, nous donnerons une nouvelle couleur.
+    }
+  }
+}
+
+
+function getNbrCases() {
+  let casesVidesIndices = [];
+  let casesFaussesIndices = [];
+  let casesCorrectesIndices = [];
+
+  for (let i = 0; i < 81; i++) {
+    if (sudokuFinal[i] == "") {
+      nbrCasesVides += 1;
+      casesVidesIndices.push(i);
+    } else if (getSudokuSolution[0][i] != sudokuFinal[i]) {
+      nbrCasesFausses += 1;
+      casesFaussesIndices.push(i);
+    } else {
+      nbrCasesCorrectes += 1;
+      casesCorrectesIndices.push(i);
+    }
+  }
+
+  // Choisissez aléatoirement un indice parmi les cases vides ou incorrectes
+  const allHintIndices = [...casesVidesIndices, ...casesFaussesIndices];
+  if (allHintIndices.length > 0) {
+    posIndice = allHintIndices[Math.floor(Math.random() * allHintIndices.length)];
+  } else {
+    posIndice = -1; // Si aucune case ne nécessite un indice
+  }
+
+  // Logs pour déboguer
+  // console.log("le nombre de cases incorrectes est de " + nbrCasesFausses);
+  // console.log("le nombre de cases correctes est de " + nbrCasesCorrectes);
+  // console.log("le nombre de cases vides est de " + nbrCasesVides);
+  // console.log("la position de l'indice sera " + posIndice);
+  if (posIndice !== -1) {
+    console.log("Valeur de la solution pour l'indice sélectionné: " + getSudokuSolution[0][posIndice]);
+  }
+}
+
+
+
+
+
 
 
