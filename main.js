@@ -48,10 +48,13 @@ const handleDrop = (e) => {
   } else {
     alert("Le contenu que vous essayez de drag and drop doit être un chiffre entre 1 et 9.");
   }
+  const carres = document.querySelectorAll(".sudoku-container button");
   const newElement = document.createElement("a");
   newElement.href = "#";
   newElement.classList.add("list-group-item", "list-group-item-action");
   newElement.textContent = text;
+  carres[positionSolution].style.backgroundColor='rgba(255,255,255, 0.8)';
+  giveSolution = false;
   scanSudoku();
   compareSudoku()
 };
@@ -304,9 +307,9 @@ function back() {
 
     // Mettre à jour le tableau `sudokuFinal` après l'annulation
     sudokuFinal[index] = 0; // Remettre à zéro après avoir supprimé l'entrée de l'utilisateur
-    console.log(listMove);
+    // console.log(listMove);
   } else {
-    console.log("Aucun mouvement à annuler");
+    // console.log("Aucun mouvement à annuler");
   }
 }
 
@@ -330,7 +333,7 @@ function compareSudoku(){
       // console.log(sudokuFinal[i]);
       const existingMove = listMove.find(move => move[0] === i);
       if (!existingMove) {
-        listMove.push([i, sudokuFinal[i]]);
+        listMove.push([i, sudokuFinal[i]]);        
       }
     }
   }
@@ -370,7 +373,7 @@ function giveHint() {
       } else if (getSudokuSolution[0][positionSolution] != sudokuFinal[positionSolution]) {
         carres[positionSolution].style.backgroundColor = 'red'; // Case incorrecte
       }
-      giveSolution = true; // La prochaine fois, nous montrerons la solution.
+      giveSolution = true;
     } else {
       if(sudokuFinal[positionSolution] ==getSudokuSolution[0][positionSolution]){
         carres[positionSolution].style.backgroundColor='rgba(255,255,255, 0.8)';
@@ -379,8 +382,11 @@ function giveHint() {
       if (sudokuFinal[positionSolution] == "" || getSudokuSolution[0][positionSolution] != sudokuFinal[positionSolution]) {
         carres[positionSolution].textContent = getSudokuSolution[0][positionSolution];
         carres[positionSolution].style.backgroundColor='rgba(255,255,255, 0.8)';
+        sudokuFinal[positionSolution] = getSudokuSolution[0][positionSolution];
+        listMove.push([positionSolution, getSudokuSolution[0][positionSolution]]);
+        // compareSudoku();
       }
-      giveSolution = false; // La prochaine fois, nous donnerons une nouvelle couleur.
+      giveSolution = false;
     }
   }
 }
@@ -418,7 +424,7 @@ function getNbrCases() {
   // console.log("le nombre de cases vides est de " + nbrCasesVides);
   // console.log("la position de l'indice sera " + posIndice);
   if (posIndice !== -1) {
-    console.log("Valeur de la solution pour l'indice sélectionné: " + getSudokuSolution[0][posIndice]);
+    // console.log("Valeur de la solution pour l'indice sélectionné: " + getSudokuSolution[0][posIndice]);
   }
 }
 
