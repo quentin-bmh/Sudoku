@@ -56,7 +56,8 @@ const handleDrop = (e) => {
   carres[positionSolution].style.backgroundColor='rgba(255,255,255, 0.8)';
   giveSolution = false;
   scanSudoku();
-  compareSudoku()
+  compareSudoku();
+  isSudokuComplete();
 };
 
 
@@ -158,81 +159,43 @@ demonBtn.addEventListener("click", () => {
 generateSudokuWithCurrentDifficulty();
 
 /*Funtion finished*/
+function isSudokuComplete(){
+  let complete = true;
+  for(let i=0; i<81; i++){
+    if(sudokuFinal[i] == ''){
+      complete = false;
+      return;
+    }
+  }
+  if(complete == true){
+    IsSudokuValid();
+  }
+}
+
 function IsSudokuValid() {
-  const sudoku = [];
-  const carres = document.querySelectorAll(".sudoku-container button");
-  carres.forEach((bouton, index) => {
-    const contenu = bouton.textContent.trim();
-    const nombre = parseInt(contenu);
-    sudoku.push(!isNaN(nombre) ? nombre : 0);
-  });
-
-  // Transformer le tableau linéaire en un tableau 9x9
-  const grid = [];
-  for (let i = 0; i < 9; i++) {
-    grid.push(sudoku.slice(i * 9, i * 9 + 9));
-  }
-
-  // Fonction pour vérifier si une liste contient les nombres de 1 à 9 sans répétition
-  function isValidGroup(group) {
-    const seen = new Set();
-    for (const num of group) {
-      if (num < 1 || num > 9 || seen.has(num)) {
-        return false;
-      }
-      seen.add(num);
-    }
-    return true;
-  }
-
-  // Vérifier les lignes
-  for (let row = 0; row < 9; row++) {
-    if (!isValidGroup(grid[row])) {
-      showResult(false);
-      return;
+  let valid = true;
+  for(let i=0; i<81; i++){
+    if(getSudokuSolution[0][i]!=sudokuFinal[i]){
+      valid = false;
+      showResultF();
     }
   }
-
-  // Vérifier les colonnes
-  for (let col = 0; col < 9; col++) {
-    const column = [];
-    for (let row = 0; row < 9; row++) {
-      column.push(grid[row][col]);
-    }
-    if (!isValidGroup(column)) {
-      showResult(false);
-      return;
-    }
+  if(valid == true){
+    showResultV();
   }
-
-  // Vérifier les blocs 3x3
-  for (let blockRow = 0; blockRow < 3; blockRow++) {
-    for (let blockCol = 0; blockCol < 3; blockCol++) {
-      const block = [];
-      for (let row = 0; row < 3; row++) {
-        for (let col = 0; col < 3; col++) {
-          block.push(grid[blockRow * 3 + row][blockCol * 3 + col]);
-        }
-      }
-      if (!isValidGroup(block)) {
-        showResult(false);
-        return;
-      }
-    }
-  }
-  showResult(true);
+  console.log(sudokuFinal);
 }
-function showResult(isValid) {
-  const resC = document.querySelector(".correctA");
+
+function showResultF() {
   const resI = document.querySelector(".incorrectA");
-  if (isValid) {
-    resC.classList.remove("hidden");
-    resI.classList.add("hidden");
-  } else {
-    resC.classList.add("hidden");
-    resI.classList.remove("hidden");
-  }
+  resI.classList.remove("hidden");
+
 }
+function showResultV() {
+  const resC = document.querySelector(".correctA");
+  resC.classList.remove("hidden");
+}
+
 
 /*Funtion finished*/
 function eraseSudoku() {
@@ -385,6 +348,7 @@ function giveHint() {
         sudokuFinal[positionSolution] = getSudokuSolution[0][positionSolution];
         listMove.push([positionSolution, getSudokuSolution[0][positionSolution]]);
         // compareSudoku();
+        isSudokuComplete();
       }
       giveSolution = false;
     }
