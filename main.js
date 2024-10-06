@@ -4,7 +4,7 @@ const listItems = document.querySelectorAll(".list-group-item");
 let draggedItem;
 const sudokuInitial = [];
 const sudokuFinal = [];
-
+const getSudokuSolution = [];
 
 /*DRAG AND DROP */
 const handleDragLeave = (e) => {};
@@ -86,7 +86,7 @@ async function loadSudokuSolutions() {
   }
 }
 
-const getSudokuSolution = [];
+
 
 async function generateSudoku(difficulty) {
   eraseSudoku();
@@ -143,18 +143,22 @@ const demonBtn = document.getElementById("demonBtn");
 easyBtn.addEventListener("click", () => {
   currentDifficulty = 35; 
   generateSudokuWithCurrentDifficulty();
+  getSudokuSolution.length=0;
 });
 mediumBtn.addEventListener("click", () => {
   currentDifficulty = 32;
   generateSudokuWithCurrentDifficulty();
+  getSudokuSolution.length=0;
 });
 hardBtn.addEventListener("click", () => {
   currentDifficulty = 28;
   generateSudokuWithCurrentDifficulty();
+  getSudokuSolution.length=0;
 });
 demonBtn.addEventListener("click", () => {
   currentDifficulty = 25;
   generateSudokuWithCurrentDifficulty();
+  getSudokuSolution.length=0;
 });
 generateSudokuWithCurrentDifficulty();
 
@@ -212,7 +216,7 @@ function eraseSudoku() {
 
 
 
-/*Funtion not finished*/
+/*Funtion finished*/
 function getRandomIndices(count) {
   const indices = [];
   while (indices.length < count) {
