@@ -191,11 +191,15 @@ function IsSudokuValid() {
 }
 
 function showResultF() {
+  const resC = document.querySelector(".correctA");
+  resC.classList.add("hidden");
   const resI = document.querySelector(".incorrectA");
   resI.classList.remove("hidden");
 
 }
 function showResultV() {
+  const resI = document.querySelector(".incorrectA");
+  resI.classList.add("hidden");
   const resC = document.querySelector(".correctA");
   resC.classList.remove("hidden");
 }
@@ -253,6 +257,8 @@ function addBorders() {
 }
 addBorders();
 
+// boutons fonctionnalitées
+
 function back() {
   // Vérifier s'il y a des mouvements à annuler
   if (listMove.length > 0) {
@@ -280,8 +286,6 @@ function back() {
   }
 }
 
-
-
 function scanSudoku(){
   //vide le tableau
   sudokuFinal.length = 0;
@@ -294,6 +298,12 @@ function scanSudoku(){
 }
 
 const listMove = [];
+let nbrCasesVides = 0;
+let nbrCasesFausses = 0;
+let nbrCasesCorrectes = 0;
+let posIndice = 0;
+let giveSolution = false;
+let positionSolution = -1;
 function compareSudoku(){
   for(let i=0; i<80; i++){
     if(sudokuInitial[i] != sudokuFinal[i]){
@@ -309,13 +319,6 @@ function compareSudoku(){
   }
   // console.log(listMove);
 }
-
-let nbrCasesVides = 0;
-let nbrCasesFausses = 0;
-let nbrCasesCorrectes = 0;
-let posIndice = 0;
-let giveSolution = false;
-let positionSolution = -1;
 
 function giveHint() {
   nbrCasesVides = 0;
@@ -358,7 +361,6 @@ function giveHint() {
     }
   }
 }
-
 
 function getNbrCases() {
   let casesVidesIndices = [];
