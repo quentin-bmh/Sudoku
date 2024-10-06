@@ -53,7 +53,7 @@ const handleDrop = (e) => {
   newElement.href = "#";
   newElement.classList.add("list-group-item", "list-group-item-action");
   newElement.textContent = text;
-  carres[positionSolution].style.backgroundColor='rgba(255,255,255, 0.8)';
+  // carres[positionSolution].style.backgroundColor='rgba(255,255,255, 0.8)';
   giveSolution = false;
   scanSudoku();
   compareSudoku();
@@ -304,6 +304,7 @@ let nbrCasesCorrectes = 0;
 let posIndice = 0;
 let giveSolution = false;
 let positionSolution = -1;
+
 function compareSudoku(){
   for(let i=0; i<80; i++){
     if(sudokuInitial[i] != sudokuFinal[i]){
@@ -317,7 +318,7 @@ function compareSudoku(){
   for (let i = 0; i < 81; i++) {
     sudokuInitial[i] = sudokuFinal[i];
   }
-  // console.log(listMove);
+  console.log(listMove);
 }
 
 function giveHint() {
