@@ -5,6 +5,7 @@ let draggedItem;
 const sudokuInitial = [];
 const sudokuFinal = [];
 const getSudokuSolution = [];
+let gameStarted=false;
 
 /*DRAG AND DROP */
 const handleDragLeave = (e) => {};
@@ -27,6 +28,8 @@ const handleDragStart = (e) => {
   newElement.href = "#";
   newElement.classList.add("list-group-item", "list-group-item-action");
   newElement.textContent = text.trim();
+  gameStarted=true;
+  startTimer();
 };
 
 const handleDrop = (e) => {
@@ -56,7 +59,7 @@ const handleDrop = (e) => {
   // carres[positionSolution].style.backgroundColor='rgba(255,255,255, 0.8)';
   giveSolution = false;
   scanSudoku();
-  compareSudoku();
+  startTimer();
   isSudokuComplete();
 };
 
@@ -144,21 +147,25 @@ easyBtn.addEventListener("click", () => {
   currentDifficulty = 35; 
   generateSudokuWithCurrentDifficulty();
   getSudokuSolution.length=0;
+  closeResult();
 });
 mediumBtn.addEventListener("click", () => {
   currentDifficulty = 32;
   generateSudokuWithCurrentDifficulty();
   getSudokuSolution.length=0;
+  closeResult();
 });
 hardBtn.addEventListener("click", () => {
   currentDifficulty = 28;
   generateSudokuWithCurrentDifficulty();
   getSudokuSolution.length=0;
+  closeResult();
 });
 demonBtn.addEventListener("click", () => {
   currentDifficulty = 25;
   generateSudokuWithCurrentDifficulty();
   getSudokuSolution.length=0;
+  closeResult();
 });
 generateSudokuWithCurrentDifficulty();
 
@@ -186,22 +193,28 @@ function IsSudokuValid() {
   }
   if(valid == true){
     showResultV();
+    stopTimer();
   }
   console.log(sudokuFinal);
 }
 
+const resC = document.querySelector(".correctA");
+const resI = document.querySelector(".incorrectA");
 function showResultF() {
-  const resC = document.querySelector(".correctA");
   resC.classList.add("hidden");
-  const resI = document.querySelector(".incorrectA");
   resI.classList.remove("hidden");
 
 }
-function showResultV() {
-  const resI = document.querySelector(".incorrectA");
+function showResultV() {  
   resI.classList.add("hidden");
-  const resC = document.querySelector(".correctA");
   resC.classList.remove("hidden");
+}
+function closeResult(){
+  if(!resC.classList.contains("hidden")){
+    resC.classList.add("hidden");
+  }else if(!resI.classList.contains("hidden")){
+    resI.classList.add("hidden");
+  }
 }
 
 
@@ -307,7 +320,7 @@ let positionSolution = -1;
 
 function compareSudoku(){
   for(let i=0; i<80; i++){
-    if(sudokuInitial[i] != sudokuFinal[i]){
+    if(sudokuInitial[i] != sudokuFinal[i]){      
       // console.log(sudokuFinal[i]);
       const existingMove = listMove.find(move => move[0] === i);
       if (!existingMove) {
@@ -322,6 +335,7 @@ function compareSudoku(){
 }
 
 function giveHint() {
+  startTimer();
   nbrCasesVides = 0;
   nbrCasesFausses = 0;
   nbrCasesCorrectes = 0;
@@ -335,21 +349,18 @@ function giveHint() {
 
   const carres = document.querySelectorAll(".sudoku-container button");
 
-  // Vérifiez que `positionSolution` est valide
   if (positionSolution >= 0 && positionSolution < 81) {
-    // Si `giveSolution` est `false`, coloriez la case
     if (!giveSolution) {
       if (sudokuFinal[positionSolution] == "") {
-        carres[positionSolution].style.backgroundColor = 'blue'; // Case vide
+        carres[positionSolution].style.backgroundColor = 'blue';
       } else if (getSudokuSolution[0][positionSolution] != sudokuFinal[positionSolution]) {
-        carres[positionSolution].style.backgroundColor = 'red'; // Case incorrecte
+        carres[positionSolution].style.backgroundColor = 'red';
       }
       giveSolution = true;
     } else {
       if(sudokuFinal[positionSolution] ==getSudokuSolution[0][positionSolution]){
         carres[positionSolution].style.backgroundColor='rgba(255,255,255, 0.8)';
       }
-      // Si `giveSolution` est `true`, afficher la solution dans la case.
       if (sudokuFinal[positionSolution] == "" || getSudokuSolution[0][positionSolution] != sudokuFinal[positionSolution]) {
         carres[positionSolution].textContent = getSudokuSolution[0][positionSolution];
         carres[positionSolution].style.backgroundColor='rgba(255,255,255, 0.8)';
@@ -428,6 +439,42 @@ function erase() {
 }
 
 
+let seconds = 0;
+let minutes = 0;
+let timerId;
+let tps;
+function startTimer() {
+  if (!timerId) {
+      timerId = setInterval(() => {
+          seconds++;
+
+          if (seconds === 60) {
+              minutes++;
+              seconds = 0;
+          }
+          let formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+          let formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+          tps = formattedMinutes+"min"+formattedSeconds+"s";
+          console.log(`${formattedMinutes}:${formattedSeconds}`);
+      }, 1000);
+  }
+}
+
+function stopTimer() {
+  if (timerId) {
+      clearInterval(timerId);
+      timerId = null;
+      gameStarted=false;
+      
+      console.log(tps);
+  }
+}
+if(gameStarted){
+  startTimer();
+}else{
+  stopTimer();
+  gameStarted=false;
+}
 
 
 
