@@ -1,0 +1,112 @@
+body {
+    background: radial-gradient(circle, #00bcd4, #00a9bf, #0096aa, #008494, #00717f, #005e6a, #004b55, #003840, #00262a, #001315);
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    z-index: 1;
+}
+.links{
+    display: flex;
+    flex-direction: row;
+    width: 10%;
+    gap: 2%;
+}
+.links img{
+    cursor: pointer;
+    color: black;
+}
+
+.sudoku{
+    /* border: solid 3px red; */
+    width: 50%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.showSudoku{
+    border: solid 2px black;
+    height: 70%;
+    width: 70%;
+}
+.resultat{
+    /* border: solid 2px white; */
+    width: 50%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.resultat > *{
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    width: 400px;
+    border-radius: 2%;
+    border: solid 2px #001315;
+}
+.details > * {
+    width: 300px;
+}
+.details > :nth-child(1),
+.details > :nth-child(2) {
+  border-bottom: 2px solid #001315;
+}
+
+  
+.details img{
+    width: 100px;
+    height: 100px;
+}
+.bareme{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 5px;
+    padding: 5px;
+}
+.demon{
+    height: 80%;
+    width: 15%;
+    border: solid 2px white;
+}
+.difficile{
+    height: 60%;
+    width: 15%;
+    border: solid 2px white;
+}
+.moyen{
+    height: 40%;
+    width: 15%;
+    border: solid 2px white;
+}
+.facile{
+    height: 20%;
+    width: 15%;
+    border: solid 2px white;
+}

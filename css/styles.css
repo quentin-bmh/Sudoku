@@ -101,7 +101,7 @@ header{
 
 
 .proposition{
-    background-color: bisque;
+    background-color: #0013152b;
     width: fit-content;
     display: flex;
     flex-direction: column;
@@ -148,6 +148,7 @@ header{
 .tps{
     display: flex;
     flex-direction: column;
+    width: 75%;
     gap: 30px;
 }
 .temps{

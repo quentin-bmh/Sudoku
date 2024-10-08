@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Sudokaï</title>
+    <link rel="stylesheet" href="css/styles.css">
     </head>
 <body>
     <header>
         <div class="logo">
-            <img src="logoSudoku.png" alt="logo du site web">
+            <img src="images/logoSudoku.png" alt="logo du site web">
         </div>
         <div class="links">
-            <img src="help.png" alt="aide règles">
-            <img src="settings.png" alt="roue crantée réglages">
+            <img src="images/help.png" alt="aide règles">
+            <img src="images/settings.png" alt="roue crantée réglages">
             <img src="" alt="">
         </div>
     </header>
@@ -31,13 +31,13 @@
         
         <div class="btn-options">
             <button onclick="erase()" id="eraser">
-                <img src="eraser.png" alt="">
+                <img src="images/eraser.png" alt="">
             </button>
             <button onclick="giveHint()">
-                <img src="idea.png" alt="">
+                <img src="images/idea.png" alt="">
             </button>
             <button onclick="back()">
-                <img src="backArrow.png" alt="">
+                <img src="images/backArrow.png" alt="">
             </button>
         </div>
         <div class="sudoku-container" id="sudokuContainer">
@@ -136,14 +136,14 @@
     <div class="infos">
         <div class="tps">
             <div class="temps">
-                <img src="chrono.png" alt="chronomètre">
+                <img src="images/chrono.png" alt="chronomètre">
                 <div class="details">
                     <h2>Temps estimé:</h2>
                     <span id="tpsE">10 min</span>
                 </div>
             </div>
             <div class="temps">
-                <img src="personne.png" alt="icone de personne">
+                <img src="images/personne.png" alt="icone de personne">
                 <div class="details">
                     <h2>Votre temps: </h2>
                     <span id="tpsP">00:00</span>    
@@ -166,6 +166,6 @@
         </div>
     </div>
     
-    <script src="main.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

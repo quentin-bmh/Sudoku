@@ -216,9 +216,9 @@ function showResultF() {
   resI.classList.remove("hidden");
 
 }
-function showResultV() {  
-  resI.classList.add("hidden");
-  resC.classList.remove("hidden");
+function showResultV() {
+  window.location.href = "finDePartie.html";
+
 }
 function closeResult(){
   if(!resC.classList.contains("hidden")){
