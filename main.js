@@ -5,7 +5,7 @@ let draggedItem;
 const sudokuInitial = [];
 const sudokuFinal = [];
 const getSudokuSolution = [];
-let gameStarted=false;
+
 
 /*DRAG AND DROP */
 const handleDragLeave = (e) => {};
@@ -59,6 +59,7 @@ const handleDrop = (e) => {
   // carres[positionSolution].style.backgroundColor='rgba(255,255,255, 0.8)';
   giveSolution = false;
   scanSudoku();
+  gameStarted=true;
   startTimer();
   isSudokuComplete();
 };
@@ -143,29 +144,38 @@ const mediumBtn = document.getElementById("mediumBtn");
 const hardBtn = document.getElementById("hardBtn");
 const demonBtn = document.getElementById("demonBtn");
 
+const tempsE = document.getElementById("tpsE");
 easyBtn.addEventListener("click", () => {
   currentDifficulty = 35; 
   generateSudokuWithCurrentDifficulty();
   getSudokuSolution.length=0;
   closeResult();
+  gameEnded=false;  
+  tempsE.innerHTML="10 minutes";
 });
 mediumBtn.addEventListener("click", () => {
   currentDifficulty = 32;
   generateSudokuWithCurrentDifficulty();
   getSudokuSolution.length=0;
   closeResult();
+  gameEnded=false;
+  tempsE.innerHTML="15 minutes";
 });
 hardBtn.addEventListener("click", () => {
   currentDifficulty = 28;
   generateSudokuWithCurrentDifficulty();
   getSudokuSolution.length=0;
   closeResult();
+  gameEnded=false;
+  tempsE.innerHTML="20 minutes";
 });
 demonBtn.addEventListener("click", () => {
   currentDifficulty = 25;
   generateSudokuWithCurrentDifficulty();
   getSudokuSolution.length=0;
   closeResult();
+  gameEnded=false;
+  tempsE.innerHTML="25 minutes";
 });
 generateSudokuWithCurrentDifficulty();
 
@@ -335,6 +345,7 @@ function compareSudoku(){
 }
 
 function giveHint() {
+  gameStarted=true;
   startTimer();
   nbrCasesVides = 0;
   nbrCasesFausses = 0;
@@ -438,43 +449,54 @@ function erase() {
   carres.forEach(bouton => bouton.addEventListener('click', handleErase));
 }
 
-
+let gameStarted = false;
+let gameEnded ;
 let seconds = 0;
 let minutes = 0;
-let timerId;
+let formattedMinutes = 0;
+let formattedSeconds = 0;
 let tps;
-function startTimer() {
-  if (!timerId) {
-      timerId = setInterval(() => {
-          seconds++;
+let timerId;
+const tempsP= document.getElementById("tpsP");
 
-          if (seconds === 60) {
-              minutes++;
-              seconds = 0;
-          }
-          let formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-          let formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
-          tps = formattedMinutes+"min"+formattedSeconds+"s";
-          console.log(`${formattedMinutes}:${formattedSeconds}`);
+function startTimer() {
+  if (!timerId) {  // Vérifie que le chrono n'est pas déjà en cours
+    if(gameStarted==true && gameEnded!=true){
+      timerId = setInterval(() => {
+        seconds++;
+        if (seconds === 60) {
+          minutes++;
+          seconds = 0;
+        }
+        formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+        formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+
+        tps = `${formattedMinutes}:${formattedSeconds}`;
+        tempsP.innerHTML=tps;
       }, 1000);
+    }else{
+      timerId= clearInterval(timerId);
+      timerId= null;
+    }
   }
 }
 
 function stopTimer() {
-  if (timerId) {
-      clearInterval(timerId);
-      timerId = null;
-      gameStarted=false;
-      
-      console.log(tps);
+  if (timerId) {  // Si un chrono est en cours
+    clearInterval(timerId);  // Arrête immédiatement le setInterval
+    timerId = null;  // On met le timerId à null pour indiquer que le chrono est arrêté
+    console.log("Chrono arrêté à :", tps);  // Affiche le temps où le chrono s'est arrêté
+    seconds = 0;
+    minutes = 0;
+    formattedMinutes = "00";
+    formattedSeconds = "00";
+    tps = "00min00s";
+    gameStarted=false;
+    gameEnded=true;
   }
 }
-if(gameStarted){
-  startTimer();
-}else{
-  stopTimer();
-  gameStarted=false;
-}
+
+
 
 
 
