@@ -61,6 +61,7 @@ const handleDrop = (e) => {
   scanSudoku();
   gameStarted=true;
   startTimer();
+  compareSudoku();
   isSudokuComplete();
 };
 
@@ -341,7 +342,7 @@ function compareSudoku(){
   for (let i = 0; i < 81; i++) {
     sudokuInitial[i] = sudokuFinal[i];
   }
-  console.log(listMove);
+  //console.log(listMove);
 }
 
 function giveHint() {
@@ -377,7 +378,7 @@ function giveHint() {
         carres[positionSolution].style.backgroundColor='rgba(255,255,255, 0.8)';
         sudokuFinal[positionSolution] = getSudokuSolution[0][positionSolution];
         listMove.push([positionSolution, getSudokuSolution[0][positionSolution]]);
-        // compareSudoku();
+        compareSudoku();
         isSudokuComplete();
       }
       giveSolution = false;
@@ -460,7 +461,7 @@ let timerId;
 const tempsP= document.getElementById("tpsP");
 
 function startTimer() {
-  if (!timerId) {  // Vérifie que le chrono n'est pas déjà en cours
+  if (!timerId) {
     if(gameStarted==true && gameEnded!=true){
       timerId = setInterval(() => {
         seconds++;
@@ -482,10 +483,9 @@ function startTimer() {
 }
 
 function stopTimer() {
-  if (timerId) {  // Si un chrono est en cours
-    clearInterval(timerId);  // Arrête immédiatement le setInterval
-    timerId = null;  // On met le timerId à null pour indiquer que le chrono est arrêté
-    console.log("Chrono arrêté à :", tps);  // Affiche le temps où le chrono s'est arrêté
+  if (timerId) { 
+    clearInterval(timerId); 
+    timerId = null;
     seconds = 0;
     minutes = 0;
     formattedMinutes = "00";
