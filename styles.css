@@ -248,9 +248,18 @@ body::-webkit-scrollbar {
 /* phone responsive */
 
 @media (max-width: 450px) {
+    body{
+        display: flex;
+        justify-content: flex-start;
+        height: fit-content;
+        align-items: center;
+        height: 95%;
+        width: 95%;
+        gap: 100px;
+    }
     .sudoku-container{
-        width: 50%;
-        height: 45%;
+        width: 80%;
+        height: 400px;
     }
     .carrePropal button{
         width: 40px;
@@ -258,24 +267,57 @@ body::-webkit-scrollbar {
     }
     .carrePropal{
         justify-content: center;
+        width: 380px;
+    }
+    .proposition{
+        width: 375px;
+    }
+    .jeu{
+        width: 400px;
+        height: 500px;
+        margin-left: 1%;
+    }
+    .infos{
+        width: 400px;
     }
   }
   @media (max-width: 400px) {
+    body{
+        height: 800px;
+        width: 95%;
+    }
     .sudoku-container{
-        width: 50%;
-        height: 45%;
-    }
-    .carrePropal button{
-        width: 40px;
-        height: 40px;
-    }
-    .carrePropal{
-        justify-content: center;
+        width: 350px;
     }
   }
-  @media (max-width: 350px) {
+  @media (max-height: 700px) {
     .sudoku-container{
-        width: 50%;
-        height: 45%;
+        width: 75%;
+        height: 65%;
+    }
+    .carrePropal{
+        width: 360px;
+    }
+    .infos{
+        width: 380px;
+        margin-top: -20%;
+    }
+    .jeu{
+        width: 380px;
+        margin-top: -30%;
+    }
+    .body{
+        height: 600px;
+        width: 350px;
+        margin: 0;
+        gap: 0;
+        padding: 0;
+    }
+    html{
+        display: flex;
+        justify-content: flex-end;
+        margin: 0;
+        gap: 0;
+        padding: 0;
     }
   }
