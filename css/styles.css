@@ -47,12 +47,16 @@ header{
 .links{
     display: flex;
     flex-direction: row;
-    width: 10%;
-    gap: 2%;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    gap: 5%;
 }
 .links img{
     cursor: pointer;
     color: black;
+    width: 70px;
+    height:70px;
 }
 .rien{
     width: 20%;

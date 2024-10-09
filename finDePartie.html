@@ -8,16 +8,34 @@
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="images/logoSudoku.png" alt="logo du site web">
-        </div>
-        <div class="links">
-            <img src="images/help.png" alt="aide règles">
-            <img src="images/settings.png" alt="roue crantée réglages">
-            <img src="" alt="">
-        </div>
-    </header>
-    <div class="sudoku">
+    <div class="logo">
+        <img src="images/logoSudoku.png" alt="logo du site web">
+    </div>
+    <div class="links">
+        <img src="images/icone_aide.png" alt="aide règles" id="helpButton">
+        <img src="images/icone_reglages.png" alt="roue crantée réglages" id="settingsButton">
+    </div>
+</header>
+
+<!-- Sections Help et Settings -->
+<div class="help" id="help" hidden>
+    <button class="close-btn" id="closeHelp">Fermer</button>
+    <!-- Contenu de l'aide -->
+    <p>Voici les règles du Sudoku...</p>
+</div>
+
+<div class="settings" id="settings" hidden>
+    <button class="close-btn" id="closeSettings">Fermer</button>
+    <!-- Contenu des réglages -->
+    <p>Ici, vous pouvez ajuster vos préférences...</p>
+</div>
+
+<!-- Styles CSS -->
+<style>
+    
+</style>
+
+    <!-- <div class="sudoku">
         <h1>Félicitation!!</h1>
         <div class="showSudoku">
 
@@ -53,7 +71,7 @@
             <button id="hardBtn">hard level</button>
             <button id="demonBtn">demon level</button>
         </div>
-    </div>   
+    </div>    -->
     <script src="js/finDePartie.js"></script>
 </body>
 </html>
