@@ -1,8 +1,25 @@
 body {
-    background: radial-gradient(circle, #00bcd4, #00a9bf, #0096aa, #008494, #00717f, #005e6a, #004b55, #003840, #00262a, #001315);
     width: 100vw;
     height: 98.3vh;
+    margin: 0;
+    padding: 0;
+}
+#game{
+    background: radial-gradient(circle, #00bcd4, #00a9bf, #0096aa, #008494, #00717f, #005e6a, #004b55, #003840, #00262a, #001315);
+    width: 100%;
+    height: 98.3%;
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+#endGame{
+    width: 100%;
+    height: 98.3%;
+    display: none;
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
@@ -12,6 +29,9 @@ body {
 }
 body::-webkit-scrollbar {
         display: none;
+}
+.hidden{
+    display: none;
 }
 
 header{
@@ -145,7 +165,7 @@ header{
     justify-items: center;
     margin-top: 10%;    
 }
-.tps{
+.chrono{
     display: flex;
     flex-direction: column;
     width: 75%;
@@ -155,7 +175,7 @@ header{
     display: flex;
     flex-direction: row;
 }
-.details{
+.detailsG{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

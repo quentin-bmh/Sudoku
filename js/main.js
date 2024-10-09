@@ -139,7 +139,7 @@ let currentDifficulty = 35;
 function generateSudokuWithCurrentDifficulty() {
   generateSudoku(currentDifficulty);
 }
-
+let difficulty = document.getElementById("difficulty");
 const easyBtn = document.getElementById("easyBtn");
 const mediumBtn = document.getElementById("mediumBtn");
 const hardBtn = document.getElementById("hardBtn");
@@ -147,38 +147,81 @@ const demonBtn = document.getElementById("demonBtn");
 
 const tempsE = document.getElementById("tpsE");
 easyBtn.addEventListener("click", () => {
+  displayChange();
   currentDifficulty = 35; 
   generateSudokuWithCurrentDifficulty();
   getSudokuSolution.length=0;
   closeResult();
   gameEnded=false;  
   tempsE.innerHTML="10 minutes";
+  difficulty.innerHTML= "facile";
 });
 mediumBtn.addEventListener("click", () => {
+  displayChange();
   currentDifficulty = 32;
   generateSudokuWithCurrentDifficulty();
   getSudokuSolution.length=0;
   closeResult();
   gameEnded=false;
   tempsE.innerHTML="15 minutes";
+  difficulty.innerHTML= "moyen";
 });
 hardBtn.addEventListener("click", () => {
+  displayChange();
   currentDifficulty = 28;
   generateSudokuWithCurrentDifficulty();
   getSudokuSolution.length=0;
   closeResult();
   gameEnded=false;
   tempsE.innerHTML="20 minutes";
+  difficulty.innerHTML= "difficile";
+  
 });
 demonBtn.addEventListener("click", () => {
+  displayChange();
   currentDifficulty = 25;
   generateSudokuWithCurrentDifficulty();
   getSudokuSolution.length=0;
   closeResult();
   gameEnded=false;
   tempsE.innerHTML="25 minutes";
+  difficulty.innerHTML= "demon";
 });
 generateSudokuWithCurrentDifficulty();
+
+function showDifficulty() {
+  const parent = document.getElementsByClassName("bareme")[0];  // Sélectionne le parent 'bareme'
+  
+  const demon = parent.children[0];     
+  const difficile = parent.children[1]; 
+  const moyen = parent.children[2];      
+  const facile = parent.children[3];     
+
+  const difficulty = document.getElementById("difficulty");
+
+  facile.className = '';
+  moyen.className = '';
+  difficile.className = '';
+  demon.className = '';
+
+  if (difficulty.innerHTML == "facile") {
+    facile.classList.add("facile");
+  } else if (difficulty.innerHTML == "moyen") {
+    facile.classList.add("moyen");
+    moyen.classList.add("moyen");
+  } else if (difficulty.innerHTML == "difficile") {
+    facile.classList.add("difficile");
+    moyen.classList.add("difficile");
+    difficile.classList.add("difficile");
+  } else if (difficulty.innerHTML == "demon") {
+    facile.classList.add("demon");
+    moyen.classList.add("demon");
+    difficile.classList.add("demon");
+    demon.classList.add("demon");
+  }
+}
+
+
 
 /*Funtion finished*/
 function isSudokuComplete(){
@@ -217,8 +260,8 @@ function showResultF() {
 
 }
 function showResultV() {
-  window.location.href = "finDePartie.html";
-
+  displayChange();
+  showDifficulty();
 }
 function closeResult(){
   if(!resC.classList.contains("hidden")){
@@ -328,7 +371,7 @@ let nbrCasesCorrectes = 0;
 let posIndice = 0;
 let giveSolution = false;
 let positionSolution = -1;
-
+let nbrIndice=0;
 function compareSudoku(){
   for(let i=0; i<80; i++){
     if(sudokuInitial[i] != sudokuFinal[i]){      
@@ -360,6 +403,7 @@ function giveHint() {
   }
 
   const carres = document.querySelectorAll(".sudoku-container button");
+  
 
   if (positionSolution >= 0 && positionSolution < 81) {
     if (!giveSolution) {
@@ -382,6 +426,7 @@ function giveHint() {
         isSudokuComplete();
       }
       giveSolution = false;
+      nbrIndice++;
     }
   }
 }
@@ -459,6 +504,8 @@ let formattedSeconds = 0;
 let tps;
 let timerId;
 const tempsP= document.getElementById("tpsP");
+const tempsF= document.getElementById("gameChrono");
+const Indice= document.getElementById("nbrIndice");
 
 function startTimer() {
   if (!timerId) {
@@ -484,6 +531,8 @@ function startTimer() {
 
 function stopTimer() {
   if (timerId) { 
+    tempsF.innerHTML=tps;
+    Indice.innerHTML=nbrIndice;
     clearInterval(timerId); 
     timerId = null;
     seconds = 0;
@@ -493,10 +542,23 @@ function stopTimer() {
     tps = "00min00s";
     gameStarted=false;
     gameEnded=true;
+    nbrIndice=0;
   }
 }
 
+function displayChange(){
+  const endgame = document.getElementById("endGame");
+  const game = document.getElementById("game");
+  if(game.style.display != "none"){
+    game.style.display = "none";
+    endgame.style.display = "flex";
+  }else if(endgame.style.display="flex"){
+    game.style.display = "flex";
+    endgame.style.display = "none";
+    tempsP.innerHTML="00:00";
+  }
 
+}
 
 
 
