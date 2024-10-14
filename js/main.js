@@ -144,6 +144,10 @@ const easyBtn = document.getElementById("easyBtn");
 const mediumBtn = document.getElementById("mediumBtn");
 const hardBtn = document.getElementById("hardBtn");
 const demonBtn = document.getElementById("demonBtn");
+const easyBtn2 = document.getElementById("easyBtn2");
+const mediumBtn2 = document.getElementById("mediumBtn2");
+const hardBtn2 = document.getElementById("hardBtn2");
+const demonBtn2 = document.getElementById("demonBtn2");
 
 const tempsE = document.getElementById("tpsE");
 easyBtn.addEventListener("click", () => {
@@ -186,6 +190,82 @@ demonBtn.addEventListener("click", () => {
   gameEnded=false;
   tempsE.innerHTML="25 minutes";
   difficulty.innerHTML= "demon";
+});
+easyBtn2.addEventListener("click", () => {
+  if(endgame.style.display = "flex"){
+    endgame.style.display="none";
+    game.style.display="flex";
+  }
+  currentDifficulty = 35; 
+  generateSudokuWithCurrentDifficulty();
+  getSudokuSolution.length=0;
+  closeResult();
+  stopTimer();
+  gameStarted=true;
+  gameEnded=false; 
+  tempsE.innerHTML="10 minutes";
+  difficulty.innerHTML= "facile";
+  settingsDiv.hidden=true;
+  nbrIndice=0;
+  tempsP.innerHTML="00:00";
+  endgame.hidden=true;
+});
+mediumBtn2.addEventListener("click", () => {
+  if(endgame.style.display = "flex"){
+    endgame.style.display="none";
+    game.style.display="flex";
+  }
+  currentDifficulty = 32;
+  generateSudokuWithCurrentDifficulty();
+  getSudokuSolution.length=0;
+  closeResult();
+  stopTimer();
+  gameStarted=true;
+  gameEnded=false;
+  tempsE.innerHTML="15 minutes";
+  difficulty.innerHTML= "moyen";
+  settingsDiv.hidden=true;
+  nbrIndice=0;
+  tempsP.innerHTML="00:00";
+  endgame.hidden=true;
+});
+hardBtn2.addEventListener("click", () => {
+  if(endgame.style.display = "flex"){
+    endgame.style.display="none";
+    game.style.display="flex";
+  }
+  currentDifficulty = 28;
+  generateSudokuWithCurrentDifficulty();
+  getSudokuSolution.length=0;
+  closeResult();
+  stopTimer();
+  gameStarted=true;
+  gameEnded=false;
+  tempsE.innerHTML="20 minutes";
+  difficulty.innerHTML= "difficile";
+  settingsDiv.hidden=true;
+  nbrIndice=0;
+  tempsP.innerHTML="00:00";
+  endgame.hidden=true;
+});
+demonBtn2.addEventListener("click", () => {
+  if(endgame.style.display = "flex"){
+    endgame.style.display="none";
+    game.style.display="flex";
+  }
+  currentDifficulty = 25;
+  generateSudokuWithCurrentDifficulty();
+  getSudokuSolution.length=0;
+  closeResult();
+  stopTimer();
+  gameStarted=true;
+  gameEnded=false;
+  tempsE.innerHTML="25 minutes";
+  difficulty.innerHTML= "demon";
+  settingsDiv.hidden=true;
+  nbrIndice=0;
+  tempsP.innerHTML="00:00";
+  endgame.hidden=true;
 });
 generateSudokuWithCurrentDifficulty();
 
@@ -546,9 +626,9 @@ function stopTimer() {
   }
 }
 
+const endgame = document.getElementById("endGame");
+const game = document.getElementById("game");
 function displayChange(){
-  const endgame = document.getElementById("endGame");
-  const game = document.getElementById("game");
   if(game.style.display != "none"){
     game.style.display = "none";
     endgame.style.display = "flex";
@@ -561,6 +641,32 @@ function displayChange(){
 }
 
 
+const helpDiv = document.getElementById('help');
+const settingsDiv = document.getElementById('settings');
+const helpButton = document.getElementById('helpButton');
+const settingsButton = document.getElementById('settingsButton');
+const closeHelpButton = document.getElementById('closeHelp');
+const closeSettingsButton = document.getElementById('closeSettings');
 
+// Gestion de l'ouverture de la div "help"
+helpButton.addEventListener('click', () => {
+    helpDiv.hidden = false;
+    settingsDiv.hidden = true; // Fermer la div settings si elle est ouverte
+});
+
+// Gestion de l'ouverture de la div "settings"
+settingsButton.addEventListener('click', () => {
+    settingsDiv.hidden = false;
+    helpDiv.hidden = true; // Fermer la div help si elle est ouverte
+});
+
+// Gestion de la fermeture des divs avec les boutons "Fermer"
+closeHelpButton.addEventListener('click', () => {
+    helpDiv.hidden = true;
+});
+
+closeSettingsButton.addEventListener('click', () => {
+    settingsDiv.hidden = true;
+});
 
 
