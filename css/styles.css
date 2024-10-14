@@ -189,6 +189,82 @@ header{
     height: 60px;
     margin: 10px 50px 0 0;
 }
+.help, .settings {
+    position: absolute;
+    top: 10%;
+    right: 20%;
+    width: 60%;
+    height: 85%;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+/* Styles spécifiques pour .help */
+.help {
+    background-color: #eceaeaf0;
+    color: #1b1b1b;
+}
+
+.help h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    color: #008494;
+}
+.help h3{
+    color: #003840;
+}
+
+.help p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-size: 1em;
+}
+
+.help ul {
+    margin-left: 20px;
+    list-style-type: disc;
+}
+
+.help ul li {
+    margin-bottom: 10px;
+}
+
+/* Styles spécifiques pour .settings */
+.settings {
+    background-color: #eceaeaf0;
+    color: #1b1b1b;
+}
+
+/* Bouton de fermeture */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #008494;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.close-btn:hover {
+    background-color: #003840;
+}
+
+
+
+
+.links img {
+    cursor: pointer;
+}
+
+
 /* pc responsive */
 @media (max-width: 2000px) {
     .proposition{

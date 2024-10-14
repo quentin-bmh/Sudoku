@@ -27,3 +27,33 @@ closeHelpButton.addEventListener('click', () => {
 closeSettingsButton.addEventListener('click', () => {
     settingsDiv.hidden = true;
 });
+
+
+
+// Sélectionne tous les boutons par leur classe
+const easyButtons = document.getElementsByClassName("easyBtn");
+const mediumButtons = document.getElementsByClassName("mediumBtn");
+const hardButtons = document.getElementsByClassName("hardBtn");
+const demonButtons = document.getElementsByClassName("demonBtn");
+
+// Fonction pour ajouter un événement de clic à chaque bouton d'une collection
+function addClickEventToButtons(buttons, difficulty, timeText, difficultyLabel) {
+    Array.from(buttons).forEach(button => {
+        button.addEventListener("click", () => {
+            displayChange();
+            currentDifficulty = difficulty;
+            generateSudokuWithCurrentDifficulty();
+            getSudokuSolution.length = 0;
+            closeResult();
+            gameEnded = false;
+            tempsE.innerHTML = timeText;
+            difficulty.innerHTML = difficultyLabel;
+        });
+    });
+}
+
+// Ajout des événements à chaque niveau de difficulté
+addClickEventToButtons(easyButtons, 35, "10 minutes", "facile");
+addClickEventToButtons(mediumButtons, 32, "15 minutes", "moyen");
+addClickEventToButtons(hardButtons, 28, "20 minutes", "difficile");
+addClickEventToButtons(demonButtons, 25, "25 minutes", "demon");

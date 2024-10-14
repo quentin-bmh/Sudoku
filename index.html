@@ -13,9 +13,8 @@
             <img src="images/logoSudoku.png" alt="logo du site web">
         </div>
         <div class="links">
-            <img src="images/icone_aide.png" alt="aide règles">
-            <img src="images/icone_reglages.png" alt="roue crantée réglages">
-            <img src="" alt="">
+            <img src="images/icone_aide.png" alt="aide règles" id="helpButton">
+            <img src="images/icone_reglages.png" alt="roue crantée réglages" id="settingsButton">
         </div>
     </header>
     <div id="game">
@@ -206,6 +205,46 @@
                 <button id="demonBtn">demon level</button>
             </div>
         </div>   
+    </div>
+    <div class="help" id="help" hidden>
+        <button class="close-btn" id="closeHelp">Fermer</button>
+        <h2>Les Règles du Sudoku</h2>
+        <h3>Origines</h3>
+        <p>
+            Le Sudoku est un jeu de logique et de chiffres qui est devenu très populaire dans le monde entier. Bien qu’il ait pris son essor au Japon dans les années 1980, ses origines remontent à un jeu inventé en Europe. En effet, le concept de remplir une grille avec des chiffres provient d'un jeu appelé "carré latin", développé par le mathématicien suisse Leonhard Euler au XVIIIe siècle.
+        </p>
+        <p>
+            Dans les années 1970, un Américain du nom de Howard Garns a créé un puzzle similaire qu'il a appelé "Number Place", qui consistait à remplir une grille avec des chiffres. Ce jeu a été repris au Japon en 1984 par la société de puzzles Nikoli, qui l'a renommé "Sudoku", un mot japonais signifiant "chiffres uniques". C’est au début des années 2000 que le Sudoku a gagné en popularité à l’échelle mondiale grâce à son introduction dans les journaux britanniques puis dans le monde entier.
+        </p>
+        <h3>Règles</h3>
+        <p>
+            Le Sudoku est joué sur une grille de 9x9 cases, divisée en 9 blocs de 3x3. L'objectif est de remplir toutes les cases de la grille avec des chiffres de 1 à 9, en respectant les trois règles suivantes :
+            <ul>
+                <li><strong>Ligne :</strong> Chaque ligne de la grille doit contenir les chiffres de 1 à 9, sans répétition.</li>
+                <li><strong>Colonne :</strong> Chaque colonne de la grille doit contenir les chiffres de 1 à 9, sans répétition.</li>
+                <li><strong>Bloc de 3x3 :</strong> Chaque bloc de 3x3 doit contenir les chiffres de 1 à 9, sans répétition.</li>
+            </ul>
+        </p>
+        <h3>Techniques de résolution</h3>
+        <p>
+            Pour résoudre un Sudoku, il faut faire preuve de logique et de patience. Voici quelques techniques simples pour s'attaquer à la grille :
+            <ul>
+                <li><strong>La technique du balayage :</strong> Passez en revue les lignes, les colonnes et les blocs pour voir quels chiffres manquent.</li>
+                <li><strong>Les candidats uniques :</strong> Si une case ne peut contenir qu'un seul chiffre possible, remplissez-la directement.</li>
+                <li><strong>Les paires cachées :</strong> Deux cases d'une même ligne, colonne ou bloc ne peuvent contenir que les mêmes deux chiffres. Éliminez ces chiffres des autres cases.</li>
+                <li><strong>La méthode du "coup de crayon" :</strong> Notez temporairement les chiffres possibles dans chaque case pour les éliminer au fur et à mesure.</li>
+                <li><strong>La technique du "coup de force" :</strong> Testez un chiffre et vérifiez si cela mène à une solution. Si une contradiction apparaît, essayez un autre chiffre.</li>
+            </ul>
+        </p>
+    </div>   
+    <div class="settings" id="settings" hidden>
+        <button class="close-btn" id="closeSettings">Fermer</button>
+        <div class="btn-level">
+            <button id="easyBtn">easy level</button>
+            <button id="mediumBtn">medium level</button>
+            <button id="hardBtn">hard level</button>
+            <button id="demonBtn">demon level</button>
+        </div>
     </div>
     <script src="js/main.js"></script>
 </body>
