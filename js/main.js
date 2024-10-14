@@ -330,7 +330,23 @@ function IsSudokuValid() {
     stopTimer();
   }
   console.log(sudokuFinal);
+  showSudoku(sudokuFinal);
 }
+
+function showSudoku(sudokuFinal) {
+  // Sélectionne tous les boutons à l'intérieur de la grille de Sudoku
+  const buttons = document.querySelectorAll('.showSudoku button');
+  console.log(sudokuFinal[59]);
+  for(let i=0; i<81; i++){
+    buttons[i].innerHTML=sudokuFinal[i];
+  }
+  addBorders(); 
+}
+
+
+
+
+
 
 const resC = document.querySelector(".correctA");
 const resI = document.querySelector(".incorrectA");

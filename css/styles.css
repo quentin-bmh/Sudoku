@@ -27,6 +27,23 @@ body {
     margin: 0;
     padding: 0;
 }
+.showSudoku {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+}
+
+.showSudoku div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    font-size: 1.2em;
+    height: 40px; /* Ajuste la taille des cellules selon tes besoins */
+    width: 40px;
+}
+
 body::-webkit-scrollbar {
         display: none;
 }
