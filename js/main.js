@@ -56,7 +56,7 @@ const handleDrop = (e) => {
   newElement.href = "#";
   newElement.classList.add("list-group-item", "list-group-item-action");
   newElement.textContent = text;
-  // carres[positionSolution].style.backgroundColor='rgba(255,255,255, 0.8)';
+  target.style.backgroundColor='rgba(255,255,255, 0.8)';
   giveSolution = false;
   scanSudoku();
   gameStarted=true;
@@ -90,8 +90,6 @@ async function loadSudokuSolutions() {
     return [];
   }
 }
-
-
 
 async function generateSudoku(difficulty) {
   eraseSudoku();
@@ -303,7 +301,7 @@ function showDifficulty() {
 
 
 
-/*Funtion finished*/
+/*Verify sudoku validity*/
 function isSudokuComplete(){
   let complete = true;
   for(let i=0; i<81; i++){
@@ -358,11 +356,6 @@ function showSudoku(sudokuFinal) {
 
 }
 
-
-
-
-
-
 const resC = document.querySelector(".correctA");
 const resI = document.querySelector(".incorrectA");
 function showResultF() {
@@ -383,7 +376,7 @@ function closeResult(){
 }
 
 
-/*Funtion finished*/
+/*base fonction to clear sudoku (used when another sudoku is generated)*/
 function eraseSudoku() {
   const carres = document.querySelectorAll(".sudoku-container");
   carres.forEach((carre) => {
@@ -398,7 +391,7 @@ function eraseSudoku() {
 
 
 
-/*Funtion finished*/
+/*generate an array of position where hint will be display (used when a sudoku is generated)*/
 function getRandomIndices(count) {
   const indices = [];
   while (indices.length < count) {
@@ -408,6 +401,7 @@ function getRandomIndices(count) {
     }
   }
 
+  // console.log(indices);
   return indices;
 }
 
@@ -434,6 +428,8 @@ function addBorders() {
   });
 }
 addBorders();
+
+
 
 // boutons fonctionnalitées
 
@@ -463,7 +459,6 @@ function back() {
     // console.log("Aucun mouvement à annuler");
   }
 }
-
 function scanSudoku(){
   //vide le tableau
   sudokuFinal.length = 0;
@@ -474,7 +469,6 @@ function scanSudoku(){
   });
   return sudokuFinal;
 }
-
 const listMove = [];
 let nbrCasesVides = 0;
 let nbrCasesFausses = 0;
@@ -519,9 +513,9 @@ function giveHint() {
   if (positionSolution >= 0 && positionSolution < 81) {
     if (!giveSolution) {
       if (sudokuFinal[positionSolution] == "") {
-        carres[positionSolution].style.backgroundColor = 'blue';
+        carres[positionSolution].style.backgroundColor = '#00bcd4';
       } else if (getSudokuSolution[0][positionSolution] != sudokuFinal[positionSolution]) {
-        carres[positionSolution].style.backgroundColor = 'red';
+        carres[positionSolution].style.backgroundColor = 'rgba(255, 74, 74, 0.757)';
       }
       giveSolution = true;
     } else {
@@ -577,11 +571,9 @@ function getNbrCases() {
     // console.log("Valeur de la solution pour l'indice sélectionné: " + getSudokuSolution[0][posIndice]);
   }
 }
-
 document.querySelector('#eraser').addEventListener('click', function() {
   erase();
 });
-
 function erase() {
   const carres = document.querySelectorAll('.sudoku-container button');
 
@@ -604,8 +596,10 @@ function erase() {
     carres.forEach(b => b.removeEventListener('click', handleErase));
   }
   carres.forEach(bouton => bouton.addEventListener('click', handleErase));
+  // carres.style.backgroundColor='rgba(255,255,255, 0.8)';
 }
 
+// timer variables/fonctions 
 let gameStarted = false;
 let gameEnded ;
 let seconds = 0;
@@ -617,7 +611,6 @@ let timerId;
 const tempsP= document.getElementById("tpsP");
 const tempsF= document.getElementById("gameChrono");
 const Indice= document.getElementById("nbrIndice");
-
 function startTimer() {
   if (!timerId) {
     if(gameStarted==true && gameEnded!=true){
@@ -656,48 +649,3 @@ function stopTimer() {
     nbrIndice=0;
   }
 }
-
-const endgame = document.getElementById("endGame");
-const game = document.getElementById("game");
-function displayChange(){
-  if(game.style.display != "none"){
-    game.style.display = "none";
-    endgame.style.display = "flex";
-  }else if(endgame.style.display="flex"){
-    game.style.display = "flex";
-    endgame.style.display = "none";
-    tempsP.innerHTML="00:00";
-  }
-
-}
-
-
-const helpDiv = document.getElementById('help');
-const settingsDiv = document.getElementById('settings');
-const helpButton = document.getElementById('helpButton');
-const settingsButton = document.getElementById('settingsButton');
-const closeHelpButton = document.getElementById('closeHelp');
-const closeSettingsButton = document.getElementById('closeSettings');
-
-// Gestion de l'ouverture de la div "help"
-helpButton.addEventListener('click', () => {
-    helpDiv.hidden = false;
-    settingsDiv.hidden = true; // Fermer la div settings si elle est ouverte
-});
-
-// Gestion de l'ouverture de la div "settings"
-settingsButton.addEventListener('click', () => {
-    settingsDiv.hidden = false;
-    helpDiv.hidden = true; // Fermer la div help si elle est ouverte
-});
-
-// Gestion de la fermeture des divs avec les boutons "Fermer"
-closeHelpButton.addEventListener('click', () => {
-    helpDiv.hidden = true;
-});
-
-closeSettingsButton.addEventListener('click', () => {
-    settingsDiv.hidden = true;
-});
-
-

@@ -1,1 +1,0 @@
-faire en sorte que la fonction gomme retire littéralement le coup de listMove 
