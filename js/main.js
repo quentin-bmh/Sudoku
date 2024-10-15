@@ -339,8 +339,23 @@ function showSudoku(sudokuFinal) {
   console.log(sudokuFinal[59]);
   for(let i=0; i<81; i++){
     buttons[i].innerHTML=sudokuFinal[i];
+    let row = Math.floor(i / 9);
+    let col = i % 9;
+    buttons[i].style.border = '0px solid black';
+      if (col % 3 === 2) {
+          buttons[i].style.borderRight = '3px solid black';
+      }
+      if (row % 3 === 2) {
+          buttons[i].style.borderBottom = '3px solid black';
+      }
+      if (col === 0) {
+          buttons[i].style.borderLeft = '3px solid black';
+      }
+      if (row === 0) {
+          buttons[i].style.borderTop = '3px solid black';
+      }
   }
-  addBorders(); 
+
 }
 
 

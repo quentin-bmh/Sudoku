@@ -31,17 +31,50 @@ body {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(9, 1fr);
+    gap: 1px;
+    background-color: black;
+    z-index: 1
 }
-
-.showSudoku div {
-    display: flex;
-    align-items: center;
+.halo-effect {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: 0;
+    background: repeating-conic-gradient(
+      from 0deg,
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.3) 10deg,
+      rgba(255, 255, 255, 0) 10deg,
+      rgba(255, 255, 255, 0) 20deg
+    );
+    background-size: cover;
+    border-radius: 10px; /* Pour adoucir légèrement les bords (facultatif) */
+    animation: infinite linear 60s rotation;
+  }
+  @keyframes rotation {
+    from{
+        rotate: 0deg;
+    }
+    to{
+        rotate: 360deg;
+    }
+  }
+.sudoku {
+    width: 35%;
+    height: 70%;
     justify-content: center;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    font-size: 1.2em;
-    height: 40px; /* Ajuste la taille des cellules selon tes besoins */
-    width: 40px;
+    justify-items: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Pour que la position absolue de .halo-effect soit relative à .sudoku */
+    overflow: hidden;
+    border-radius: 10px;
+}
+.sudoku h1{
+    z-index: 1
 }
 
 body::-webkit-scrollbar {
