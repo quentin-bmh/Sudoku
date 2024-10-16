@@ -15,45 +15,59 @@
   </head>
   <body>
 
-    <div class="modal-container">
+    <div class="help-container">
 
-      <div class="overlay modal-trigger"></div>
+      <div class="overlay help-trigger"></div>
      
-      <div class="modal" role="dialog" aria-labelledby="modalTitle" aria-describedby="dialogDesc">
-        <button aria-label="close modal" class="close-modal modal-trigger">X</button>
+      <div class="help" role="dialog" aria-labelledby="modalTitle" aria-describedby="dialogDesc">
+        <button aria-label="close help" class="close-help help-trigger">X</button>
         <h2>Les Règles du Sudoku</h2>
         <h3>Origines</h3>
         <p>
-            Le Sudoku est un jeu de logique et de chiffres qui est devenu très populaire dans le monde entier. Bien qu’il ait pris son essor au Japon dans les années 1980, ses origines remontent à un jeu inventé en Europe. En effet, le concept de remplir une grille avec des chiffres provient d'un jeu appelé "carré latin", développé par le mathématicien suisse Leonhard Euler au XVIIIe siècle.
+          Le Sudoku est un jeu de logique et de chiffres qui est devenu très populaire dans le monde entier. Bien qu’il ait pris son essor au Japon dans les années 1980, ses origines remontent à un jeu inventé en Europe. En effet, le concept de remplir une grille avec des chiffres provient d'un jeu appelé "carré latin", développé par le mathématicien suisse Leonhard Euler au XVIIIe siècle.
         </p>
         <p>
-            Dans les années 1970, un Américain du nom de Howard Garns a créé un puzzle similaire qu'il a appelé "Number Place", qui consistait à remplir une grille avec des chiffres. Ce jeu a été repris au Japon en 1984 par la société de puzzles Nikoli, qui l'a renommé "Sudoku", un mot japonais signifiant "chiffres uniques". C’est au début des années 2000 que le Sudoku a gagné en popularité à l’échelle mondiale grâce à son introduction dans les journaux britanniques puis dans le monde entier.
+          Dans les années 1970, un Américain du nom de Howard Garns a créé un puzzle similaire qu'il a appelé "Number Place", qui consistait à remplir une grille avec des chiffres. Ce jeu a été repris au Japon en 1984 par la société de puzzles Nikoli, qui l'a renommé "Sudoku", un mot japonais signifiant "chiffres uniques". C’est au début des années 2000 que le Sudoku a gagné en popularité à l’échelle mondiale grâce à son introduction dans les journaux britanniques puis dans le monde entier.
         </p>
         <h3>Règles</h3>
         <p>
-            Le Sudoku est joué sur une grille de 9x9 cases, divisée en 9 blocs de 3x3. L'objectif est de remplir toutes les cases de la grille avec des chiffres de 1 à 9, en respectant les trois règles suivantes :
-            <ul>
-                <li><strong>Ligne :</strong> Chaque ligne de la grille doit contenir les chiffres de 1 à 9, sans répétition.</li>
-                <li><strong>Colonne :</strong> Chaque colonne de la grille doit contenir les chiffres de 1 à 9, sans répétition.</li>
-                <li><strong>Bloc de 3x3 :</strong> Chaque bloc de 3x3 doit contenir les chiffres de 1 à 9, sans répétition.</li>
-            </ul>
+          Le Sudoku est joué sur une grille de 9x9 cases, divisée en 9 blocs de 3x3. L'objectif est de remplir toutes les cases de la grille avec des chiffres de 1 à 9, en respectant les trois règles suivantes :
+          <ul>
+              <li><strong>Ligne :</strong> Chaque ligne de la grille doit contenir les chiffres de 1 à 9, sans répétition.</li>
+              <li><strong>Colonne :</strong> Chaque colonne de la grille doit contenir les chiffres de 1 à 9, sans répétition.</li>
+              <li><strong>Bloc de 3x3 :</strong> Chaque bloc de 3x3 doit contenir les chiffres de 1 à 9, sans répétition.</li>
+          </ul>
         </p>
         <h3>Techniques de résolution</h3>
         <p>
-            Pour résoudre un Sudoku, il faut faire preuve de logique et de patience. Voici quelques techniques simples pour s'attaquer à la grille :
-            <ul>
-                <li><strong>La technique du balayage :</strong> Passez en revue les lignes, les colonnes et les blocs pour voir quels chiffres manquent.</li>
-                <li><strong>Les candidats uniques :</strong> Si une case ne peut contenir qu'un seul chiffre possible, remplissez-la directement.</li>
-                <li><strong>Les paires cachées :</strong> Deux cases d'une même ligne, colonne ou bloc ne peuvent contenir que les mêmes deux chiffres. Éliminez ces chiffres des autres cases.</li>
-                <li><strong>La méthode du "coup de crayon" :</strong> Notez temporairement les chiffres possibles dans chaque case pour les éliminer au fur et à mesure.</li>
-                <li><strong>La technique du "coup de force" :</strong> Testez un chiffre et vérifiez si cela mène à une solution. Si une contradiction apparaît, essayez un autre chiffre.</li>
-            </ul>
+          Pour résoudre un Sudoku, il faut faire preuve de logique et de patience. Voici quelques techniques simples pour s'attaquer à la grille :
+          <ul>
+              <li><strong>La technique du balayage :</strong> Passez en revue les lignes, les colonnes et les blocs pour voir quels chiffres manquent.</li>
+              <li><strong>Les candidats uniques :</strong> Si une case ne peut contenir qu'un seul chiffre possible, remplissez-la directement.</li>
+              <li><strong>Les paires cachées :</strong> Deux cases d'une même ligne, colonne ou bloc ne peuvent contenir que les mêmes deux chiffres. Éliminez ces chiffres des autres cases.</li>
+              <li><strong>La méthode du "coup de crayon" :</strong> Notez temporairement les chiffres possibles dans chaque case pour les éliminer au fur et à mesure.</li>
+              <li><strong>La technique du "coup de force" :</strong> Testez un chiffre et vérifiez si cela mène à une solution. Si une contradiction apparaît, essayez un autre chiffre.</li>
+          </ul>
         </p>
       </div>
 
     </div>
+    <div class="settings-container">
 
-    <img class="modal-btn modal-trigger" src="images/help.png" alt="">
+      <div class="overlay settings-trigger"></div>
+     
+      <div class="settings" role="dialog" aria-labelledby="modalTitle" aria-describedby="dialogDesc">
+        <button aria-label="close settings" class="close-settings settings-trigger">X</button>
+        <h2>Paramètres</h2>
+        <h3>cacher/afficher le chrono</h3>
+        <h3>Changer la difficulté</h3>
+      </div>
+
+    </div>
+
+    <img id="help-btn" class="help-btn help-trigger" src="images/help.png" alt="">
+    <img id="settings-btn" class="settings-btn settings-trigger" src="images/settings.png" alt="">
+    
 
 
 

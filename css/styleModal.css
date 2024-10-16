@@ -10,22 +10,17 @@ body {
   font-family: Raleway, Helvetica, sans-serif;
 }
 
-.modal-btn {
-  padding: 10px 14px;
-  font-size: 18px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
+.help-btn {
   min-width: 50px;
   cursor: pointer;
   border: none;
 }
-.modal-btn.active {
+.help-btn.active {
   background: #333333d3;
   transition: opacity 0.4s 0.2s ease-out;
 }
 
-.modal-container {
+.help-container {
   /* display: none; */
   visibility: hidden;
   position: fixed;
@@ -34,7 +29,7 @@ body {
   height: 100vh;
   transition: visibility 0.4s;
 }
-.modal-container.active {
+.help-container.active {
   /* display: block; */
   visibility: visible;
 }
@@ -47,12 +42,12 @@ body {
   background: #333333d3;
   transition: opacity 0.4s 0.2s ease-out;
 }
-.modal-container.active .overlay {
+.help-container.active .overlay {
   opacity: 1;
   transition: opacity 0.4s ease-out;
 }
 
-.modal {
+.help {
   opacity: 0;
   width: 95%;
   max-width: 80%;
@@ -68,14 +63,14 @@ body {
   transform 0.4s ease-out;
 }
 
-.modal-container.active .modal {
+.help-container.active .help {
   opacity: 1;
   transform: translate(-50%, -50%);
   transition: opacity 0.4s 0.2s ease-out,
   transform 0.4s 0.2s ease-out;
 }
 
-.close-modal {
+.close-help {
   padding: 8px 10px;
   border: none;
   border-radius: 5px;
@@ -90,38 +85,151 @@ body {
 
 
 /* Styles spécifiques pour .help */
-.modal {
+.help {
   background-color: #eceaeaf0;
   color: #1b1b1b;
 }
 
-.modal h2 {
+.help h2 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 1.8em;
   color: #008494;
 }
-.modal h3{
+.help h3{
   color: #003840;
 }
 
-.modal p {
+.help p {
   margin-bottom: 20px;
   line-height: 1.6;
   font-size: 1em;
 }
 
-.modal ul {
+.help ul {
   margin-left: 20px;
   list-style-type: disc;
 }
 
-.modal ul li {
+.help ul li {
   margin-bottom: 10px;
 }
 
 /* Styles spécifiques pour .settings */
+/* .settings {
+  background-color: #eceaeaf0;
+  color: #1b1b1b;
+} */
+
+.settings-btn {
+  min-width: 50px;
+  cursor: pointer;
+  border: none;
+}
+#settings_btn{  
+  padding: 10px 14px;
+  font-size: 18px;
+  position: absolute;
+  top: 10px;
+  right: 50px;
+}
+#help_btn{  
+  padding: 10px 14px;
+  font-size: 18px;
+  position: absolute;
+  top: 10px;
+  right:10px;
+}
+
+.settings-btn.active {
+  background: #333333d3;
+  transition: opacity 0.4s 0.2s ease-out;
+}
+
+.settings-container {
+  /* display: none; */
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: visibility 0.4s;
+}
+.settings-container.active {
+  /* display: block; */
+  visibility: visible;
+}
+
+
+.settings-container.active .overlay {
+  opacity: 1;
+  transition: opacity 0.4s ease-out;
+}
+
+.settings {
+  opacity: 0;
+  width: 95%;
+  max-width: 80%;
+  min-width: 300px;
+  padding: 30px;
+  background: #fff;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% - 50px));
+  transition: opacity 0.4s ease-out,
+  transform 0.4s ease-out;
+}
+
+.settings-container.active .settings {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s 0.2s ease-out,
+  transform 0.4s 0.2s ease-out;
+}
+
+.close-settings {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  background: #f73ecccd;
+  color: #fff;
+}
+
+
+/* Styles spécifiques pour .help */
 .settings {
   background-color: #eceaeaf0;
   color: #1b1b1b;
+}
+
+.settings h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  color: #008494;
+}
+.settings h3{
+  color: #003840;
+}
+
+.settings p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  font-size: 1em;
+}
+
+.settings ul {
+  margin-left: 20px;
+  list-style-type: disc;
+}
+
+.settings ul li {
+  margin-bottom: 10px;
 }

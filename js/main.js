@@ -146,7 +146,44 @@ const easyBtn2 = document.getElementById("easyBtn2");
 const mediumBtn2 = document.getElementById("mediumBtn2");
 const hardBtn2 = document.getElementById("hardBtn2");
 const demonBtn2 = document.getElementById("demonBtn2");
+const helpContainer = document.querySelector(".help-container");
+const helpTriggers = document.querySelectorAll(".help-trigger");
+const settingsContainer = document.querySelector(".settings-container");
+const settingsTriggers = document.querySelectorAll(".settings-trigger");
+const endgame = document.getElementById("endGame");
+const game = document.getElementById("game");
 
+
+function displayChange(){
+  if(game.style.display != "none"){
+    game.style.display = "none";
+    endgame.style.display = "flex";
+  }else if(endgame.style.display="flex"){
+    game.style.display = "flex";
+    endgame.style.display = "none";
+    tempsP.innerHTML="00:00";
+  }
+
+}
+
+// Événements pour les déclencheurs d'aide
+helpTriggers.forEach(trigger => trigger.addEventListener("click", () => {
+  toggleModal('help');
+}));
+
+// Événements pour les déclencheurs des paramètres
+settingsTriggers.forEach(trigger => trigger.addEventListener("click", () => {
+  toggleModal('settings');
+}));
+function toggleModal(type) {
+  if (type === 'help') {
+    helpContainer.classList.toggle("active");
+    settingsContainer.classList.remove("active"); // Masque les paramètres si l'aide est affichée
+  } else if (type === 'settings') {
+    settingsContainer.classList.toggle("active");
+    helpContainer.classList.remove("active"); // Masque l'aide si les paramètres sont affichés
+  }
+}
 const tempsE = document.getElementById("tpsE");
 easyBtn.addEventListener("click", () => {
   displayChange();
@@ -203,7 +240,7 @@ easyBtn2.addEventListener("click", () => {
   gameEnded=false; 
   tempsE.innerHTML="10 minutes";
   difficulty.innerHTML= "facile";
-  settingsDiv.hidden=true;
+  toggleModal('settings');
   nbrIndice=0;
   tempsP.innerHTML="00:00";
   endgame.hidden=true;
@@ -222,7 +259,7 @@ mediumBtn2.addEventListener("click", () => {
   gameEnded=false;
   tempsE.innerHTML="15 minutes";
   difficulty.innerHTML= "moyen";
-  settingsDiv.hidden=true;
+  toggleModal('settings');
   nbrIndice=0;
   tempsP.innerHTML="00:00";
   endgame.hidden=true;
@@ -241,7 +278,7 @@ hardBtn2.addEventListener("click", () => {
   gameEnded=false;
   tempsE.innerHTML="20 minutes";
   difficulty.innerHTML= "difficile";
-  settingsDiv.hidden=true;
+  toggleModal('settings');
   nbrIndice=0;
   tempsP.innerHTML="00:00";
   endgame.hidden=true;
@@ -260,7 +297,7 @@ demonBtn2.addEventListener("click", () => {
   gameEnded=false;
   tempsE.innerHTML="25 minutes";
   difficulty.innerHTML= "demon";
-  settingsDiv.hidden=true;
+  toggleModal('settings');
   nbrIndice=0;
   tempsP.innerHTML="00:00";
   endgame.hidden=true;
@@ -535,7 +572,6 @@ function giveHint() {
     }
   }
 }
-
 function getNbrCases() {
   let casesVidesIndices = [];
   let casesFaussesIndices = [];

@@ -153,8 +153,9 @@ header{
     margin: 10px;
     background-color: rgb(206, 106, 25);
     border: none;
-    border-radius: 5%;
-    box-shadow:  0 0 10px rgba(0, 0, 0, 0.8);
+    padding: 5px;
+    border-radius: 3%;
+    box-shadow:  0 0 4px rgba(0, 0, 0, 0.8);
 }
 
 
@@ -239,7 +240,7 @@ header{
     height: 60px;
     margin: 10px 50px 0 0;
 }
-.help, .settings {
+/* .help, .settings {
     position: absolute;
     top: 10%;
     right: 20%;
@@ -252,7 +253,7 @@ header{
     overflow-y: auto;
 }
 
-/* Styles spécifiques pour .help */
+Styles spécifiques pour .help
 .help {
     background-color: #eceaeaf0;
     color: #1b1b1b;
@@ -283,13 +284,13 @@ header{
     margin-bottom: 10px;
 }
 
-/* Styles spécifiques pour .settings */
+Styles spécifiques pour .settings
 .settings {
     background-color: #eceaeaf0;
     color: #1b1b1b;
 }
 
-/* Bouton de fermeture */
+Bouton de fermeture
 .close-btn {
     position: absolute;
     top: 10px;
@@ -305,7 +306,7 @@ header{
 
 .close-btn:hover {
     background-color: #003840;
-}
+} */
 
 
 
