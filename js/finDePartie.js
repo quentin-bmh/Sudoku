@@ -57,3 +57,4 @@ addClickEventToButtons(easyButtons, 35, "10 minutes", "facile");
 addClickEventToButtons(mediumButtons, 32, "15 minutes", "moyen");
 addClickEventToButtons(hardButtons, 28, "20 minutes", "difficile");
 addClickEventToButtons(demonButtons, 25, "25 minutes", "demon");
+

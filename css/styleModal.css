@@ -28,6 +28,7 @@ body {
   width: 100vw;
   height: 100vh;
   transition: visibility 0.4s;
+  z-index: 2;
 }
 .help-container.active {
   /* display: block; */
@@ -88,6 +89,7 @@ body {
 .help {
   background-color: #eceaeaf0;
   color: #1b1b1b;
+  z-index: 999;
 }
 
 .help h2 {
@@ -154,6 +156,7 @@ body {
   width: 100vw;
   height: 100vh;
   transition: visibility 0.4s;
+  z-index: 2;
 }
 .settings-container.active {
   /* display: block; */

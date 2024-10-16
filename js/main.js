@@ -685,3 +685,8 @@ function stopTimer() {
     nbrIndice=0;
   }
 }
+
+
+function sayHello(){
+  console.log("bien le bonjour, citoyens de belzemut");
+}
