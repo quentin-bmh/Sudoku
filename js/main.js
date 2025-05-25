@@ -2,6 +2,9 @@
 const listItems = document.querySelectorAll(".list-group-item");
 
 let draggedItem;
+let draggedItemMobile = null;
+let touchId = null;
+let floatingClone = null;
 const sudokuInitial = [];
 const sudokuFinal = [];
 const getSudokuSolution = [];
@@ -73,6 +76,90 @@ listItems.forEach((listItem) => {
   listItem.addEventListener("dragleave", handleDragLeave);
   listItem.addEventListener("dragend", handleDragEnd);
   listItem.addEventListener("drop", handleDrop);
+
+  // Gestion tactile pour mobile
+  listItem.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    draggedItemMobile = e.target;
+    touchId = e.changedTouches[0].identifier;
+
+    // Créer le clone flottant
+    floatingClone = draggedItemMobile.cloneNode(true);
+    floatingClone.style.position = "fixed";
+    floatingClone.style.pointerEvents = "none"; // Pour ne pas gêner la détection sous-jacente
+    floatingClone.style.opacity = "0.7";
+    floatingClone.style.zIndex = "1000";
+    floatingClone.style.width = draggedItemMobile.offsetWidth + "px";
+    floatingClone.style.height = draggedItemMobile.offsetHeight + "px";
+    document.body.appendChild(floatingClone);
+
+    // Positionner le clone au doigt
+    const touch = e.changedTouches[0];
+    floatingClone.style.left = touch.clientX - draggedItemMobile.offsetWidth / 2 + "px";
+    floatingClone.style.top = touch.clientY - draggedItemMobile.offsetHeight / 2 + "px";
+
+    draggedItemMobile.style.opacity = 0.5;
+
+    gameStarted = true;
+    startTimer();
+  });
+
+  listItem.addEventListener("touchmove", (e) => {
+    e.preventDefault();
+    const touch = Array.from(e.changedTouches).find(t => t.identifier === touchId);
+    if (!touch) return;
+
+    // Déplacer le clone avec le doigt
+    floatingClone.style.left = touch.clientX - draggedItemMobile.offsetWidth / 2 + "px";
+    floatingClone.style.top = touch.clientY - draggedItemMobile.offsetHeight / 2 + "px";
+  });
+
+  listItem.addEventListener("touchend", (e) => {
+    e.preventDefault();
+    const touch = Array.from(e.changedTouches).find(t => t.identifier === touchId);
+    if (!touch) return;
+
+    draggedItemMobile.style.opacity = 1;
+
+    // Trouver l’élément sous le doigt au moment du lâcher
+    const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+
+    if (!dropTarget) {
+      cleanup();
+      return;
+    }
+
+    if (dropTarget.getAttribute('data-fixed') === 'true') {
+      alert("Vous ne pouvez pas drop sur cette case fixe.");
+    } else if (dropTarget.closest('.carrePropal') && dropTarget.tagName.toLowerCase() === 'button') {
+      // ne rien faire
+    } else {
+      const text = draggedItemMobile.textContent.trim();
+      if (/^[1-9]$/.test(text)) {
+        dropTarget.textContent = text;
+        dropTarget.style.backgroundColor = 'rgba(255,255,255, 0.8)';
+        giveSolution = false;
+        scanSudoku();
+        gameStarted = true;
+        startTimer();
+        compareSudoku();
+        isSudokuComplete();
+      } else {
+        alert("Le contenu que vous essayez de drag and drop doit être un chiffre entre 1 et 9.");
+      }
+    }
+
+    cleanup();
+  });
+
+  function cleanup() {
+    if (floatingClone) {
+      floatingClone.remove();
+      floatingClone = null;
+    }
+    draggedItemMobile = null;
+    touchId = null;
+  }
 });
 
 /* Sudoku Fonctions*/
