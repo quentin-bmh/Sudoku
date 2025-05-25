@@ -6,86 +6,27 @@ html, body {
     overflow-x: hidden;
     position: relative;
     box-sizing: border-box;
-    background-color: green;
+    background: radial-gradient(circle, #00bcd4, #00a9bf, #0096aa, #008494, #00717f, #005e6a, #004b55, #003840, #00262a, #001315);
   }
   * {
   box-sizing: border-box;
 }
   
-  #game {
+#game {
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    background: radial-gradient(circle, #00bcd4, #00a9bf, #0096aa, #008494, #00717f, #005e6a, #004b55, #003840, #00262a, #001315);
+    
     overflow: hidden;
     position: relative;
     margin: 0;
     padding: 0;
-  }
+}
   
-#endGame{
-    width: 100%;
-    height: 98.3%;
-    display: none;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    position: relative;
-    margin: 0;
-    padding: 0;
-}
-.showSudoku {
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(9, 1fr);
-    gap: 1px;
-    background-color: black;
-    z-index: 1
-}
-.halo-effect {
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    z-index: 0;
-    background: repeating-conic-gradient(
-      from 0deg,
-      rgba(255, 255, 255, 0.3),
-      rgba(255, 255, 255, 0.3) 10deg,
-      rgba(255, 255, 255, 0) 10deg,
-      rgba(255, 255, 255, 0) 20deg
-    );
-    background-size: cover;
-    border-radius: 10px; /* Pour adoucir légèrement les bords (facultatif) */
-    animation: infinite linear 60s rotation;
-  }
-  @keyframes rotation {
-    from{
-        rotate: 0deg;
-    }
-    to{
-        rotate: 360deg;
-    }
-  }
-.sudoku {
-    width: 35%;
-    height: 70%;
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    position: relative; /* Pour que la position absolue de .halo-effect soit relative à .sudoku */
-    overflow: hidden;
-    border-radius: 10px;
-}
-.sudoku h1{
-    z-index: 1
-}
+
 
 body::-webkit-scrollbar {
         display: none;
@@ -257,6 +198,175 @@ header{
 }
 
 
+
+
+#endGame{
+    width: 100%;
+    height: 98.3%;
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+.showSudoku {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    gap: 1px;
+    background-color: black;
+    border: solid 2px black;
+    height: 70%;
+    width: 70%;
+    z-index: 1
+}
+.halo-effect {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: 0;
+    background: repeating-conic-gradient(
+      from 0deg,
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.3) 10deg,
+      rgba(255, 255, 255, 0) 10deg,
+      rgba(255, 255, 255, 0) 20deg
+    );
+    background-size: cover;
+    border-radius: 10px; /* Pour adoucir légèrement les bords (facultatif) */
+    animation: infinite linear 60s rotation;
+  }
+  @keyframes rotation {
+    from{
+        rotate: 0deg;
+    }
+    to{
+        rotate: 360deg;
+    }
+  }
+.sudoku {
+    width: 35%;
+    height: 70%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Pour que la position absolue de .halo-effect soit relative à .sudoku */
+    overflow: hidden;
+    border-radius: 10px;
+}
+.sudoku h1{
+    z-index: 1
+}
+
+.resultat{
+    /* border: solid 2px white; */
+    width: 50%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.resultat > *{
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    width: 400px;
+    border-radius: 2%;
+    border: solid 2px #001315;
+}
+.details > * {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    text-align: center;
+    align-items: center;
+}
+.details > :nth-child(1),
+.details > :nth-child(2) {
+  border-bottom: 2px solid #001315;
+}
+  
+.details img{
+    width: 100px;
+    height: 100px;
+}
+.details span{
+    font-size: 20px;
+    font-weight: 800;
+}
+.bareme{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 2px;
+    padding: 5px 0 5px 0;
+}
+.bareme >:nth-child(1){
+
+    height: 80%;
+    width: 15%;
+    border: solid 1px #001315;
+}
+.bareme >:nth-child(2){
+    height: 60%;
+    width: 15%;
+    border: solid 1px #001315;
+}
+.bareme >:nth-child(3){
+    height: 40%;
+    width: 15%;
+    border: solid 1px #001315;
+}
+.bareme >:nth-child(4){
+    height: 20%;
+    width: 15%;
+    border: solid 1px #001315;
+}
+.facile {
+    background-color: rgb(0,128,0);
+}
+
+.moyen {
+    background-color: rgb(255,255,0);
+}
+
+.difficile {
+    background-color: rgb(255,0,0);
+}
+
+.demon {
+    background-color: rgb(34,4,54);
+}
+  
+.btn-level {
+    display: flex;
+    flex-direction: row;
+
+}
+.btn-level button{
+    margin: 10px;
+    background-color: rgb(206, 106, 25);
+    border: none;
+    border-radius: 5%;
+    box-shadow:  0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+
 /* pc responsive */
 @media (max-width: 2000px) {
     .proposition{
@@ -300,6 +410,19 @@ header{
   }
 /* Smartphones standards (max-width: 1000px) */
 @media (max-width: 1000px) {
+    #endGame{
+        flex-direction: column;
+    }
+    .sudoku{
+        width: 90%;
+        height: 45%;
+    }
+    .newParty{
+        display: none;
+    }
+    .resultat{
+        gap: 10px;
+    }
     .btn-options button {
       width: 75px;
       height: 75px;
@@ -381,6 +504,7 @@ header{
     #game {
       flex-direction: column;
     }
+
   }
 
 @media (max-width: 750px) {
@@ -460,6 +584,7 @@ header{
         padding: 10px;          /* Un peu de padding pour le confort */
         box-sizing: border-box; /* Pour éviter que le padding agrandisse le conteneur */
     }
+
   }
   
   @media (max-width: 400px) {
@@ -475,6 +600,9 @@ header{
     .help {
         max-height: 250px;
         overflow-y: auto;
+    }
+    #endGame{
+        flex-direction: column;
     }
   }
   
@@ -515,3 +643,7 @@ header{
     }
   }
   
+
+
+
+
